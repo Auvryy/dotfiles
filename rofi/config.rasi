@@ -9,7 +9,8 @@ configuration {
 
 * {
     font:                "JetBrains Mono Nerd Font 13";
-    background:          #1E1D2F;
+    background:          rgba(30, 29, 47, 0);
+    background-solid:    #1E1D2F;
     foreground:          #D9E0EE;
     selected:            #89b4fa;
     selected-text-color: #11111b;
@@ -21,10 +22,10 @@ window {
     location:            center;
     anchor:              center;
     width:               520px;
-    border-radius:       8px;
+    border-radius:       12px;
     border:              1px;
     border-color:        @selected;
-    background-color:    @background;
+    background-color:    #1E1D2F;
     padding:             10px;
 }
 
