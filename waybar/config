@@ -1,0 +1,137 @@
+{
+    "modules-left": ["custom/powermenu", "custom/pacman", "tray","cava"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": [ /*"bluetooth"*/ "network", "cpu", "battery", "pulseaudio", "clock"],
+
+    "custom/powermenu": {
+        "format" : " ",
+        "tooltip": false,
+        "on-click": "~/.config/rofi/powermenu/powermenu.sh",
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name}",
+        "cursor": true,
+    },
+
+    "custom/pacman": {
+        "format": " 󰮯 {}",
+        "interval": 3600,
+        "exec": "checkupdates 2>/dev/null | wc -l",
+        "exec-if": "checkupdates 2>/dev/null",
+        "on-click": "kitty -e sudo pacman -Syu",
+        "tooltip": false
+    },
+
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10,
+        "cursor": true,
+    },
+
+    "cava": {
+    // "cava_config": "$XDG_CONFIG_HOME/cava/config",  // optional: point to your cava config
+    "framerate": 24,
+    "autosens": 0,
+    "sensitivity": 1,
+    "bars": 5,
+    "lower_cutoff_freq": 50,
+    "higher_cutoff_freq": 10000,
+    "method": "pipewire",          // use "pipewire" if you're on pipewire
+    "source": "auto",
+    "stereo": false,
+    "reverse": false,
+    "bar_delimiter": 0,
+    "monstercat": false,
+    "waves": false,
+    "noise_reduction": 0.77,
+    "input_delay": 2,
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    // "actions": {
+    //   "on-click-right": "mode"
+    // },
+    "tooltip": false,
+    "cursor": false,
+    
+  },
+
+
+    // "custom/cava": {
+    //     "exec": "~/.config/waybar/scripts/cava.sh",
+    //     "format": "{}",
+    //     "tooltip": false
+    // },
+
+
+
+    // "bluetooth": {
+    //     "format": " 󰂯 ",
+    //     "format-disabled": " 󰂲 ",
+    //     "format-connected": " 󰂱 ",
+    //     "on-click": "blueman-manager",
+    // },
+  
+
+    "cpu": {
+    "interval": 2,
+    "format": "󰻠 {usage}%",
+    "tooltip": true
+    },
+
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": " ",
+        "format-linked": "  Linked (No IP)",
+        "format-disconnected": "  Disconnected",
+        "tooltip": false,
+    },
+
+    "battery": {
+        "states": {
+            "good": 85,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-alt": "{icon} {capacity}%",
+        "format-icons": [" ", " ", " ", " ", " "],
+        "tooltip-format": "{time}",
+        "cursor": false,
+    },
+
+    "pulseaudio": {
+        "max-volume": 150,
+        "scroll-step": 5,
+        "format": "{icon} {volume}%",
+        "format-muted": "  {volume}%",
+        "format-bluetooth": " {volume}%",
+        "format-bluetooth-muted": "  {volume}%",
+        "format-icons": {
+            "headphone": " ",
+            "headset": " ",
+            "default": [" "],
+        },
+        "on-click": "pavucontrol",
+    },
+
+    "clock": {
+        "format": "{:%a %d/%m/%Y ~ %I:%M %p}",
+        "tooltip-format": "<span size='15000'><tt>{calendar}</tt></span>",
+        "calendar": {
+            "mode": "month",
+            "format": {
+                "months": "<span color='#F5C2E7'><b>{}</b></span>",
+                "weekdays": "<span color='#89B4FA'><b>{}</b></span>",
+                "days": "<span color='#CDD6F4'><b>{}</b></span>",
+                "today": "<span color='#F9E2AF'><b>{}</b></span>",
+            }
+        },
+        "on-click": "swaync-client -t -sw",
+    }
+}

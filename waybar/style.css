@@ -1,0 +1,122 @@
+/* @import "$HOME/.config/colors/colors.css" */
+@import "../colors/colors.css";
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
+    font-weight: bold;
+    background-color: transparent;
+    border-radius: 5px;
+    min-height: 0;
+    
+}
+
+window,
+tooltip {
+    background-color: @background;
+}
+
+#waybar {
+    background: alpha(@background, 0.25);
+    border-radius: 0;
+    margin: 10px;
+}
+
+
+#custom-powermenu {
+  min-height: 30px;
+  min-width: 40px;
+  border: 1px solid @main-blue;
+  margin-left: 15px;
+  margin-right: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0;
+  border-radius: 0.30rem;
+  background-color: @main-blue;
+  background-image: url("/home/andy/.config/waybar/images/robin-eyes.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#workspaces {
+    margin: 8px 4px;
+}
+
+#workspaces button {
+    color: @main-blue;
+    border: none;
+    padding: 0 5px;
+}
+#workspaces button:hover {
+    color: @main-blue;
+    transition: none;
+    border-bottom: 1px solid @main-blue;
+    padding: 0 8px;
+}
+
+#workspaces button.active {
+    color: @main-blue;
+    border: 2px solid @main-blue;
+    padding: 0 8px;
+    margin: 0 2px;
+}
+
+#workspaces button.urgent {
+    background-color: @main-blue;
+    color: @white;
+    padding: 0 8px;
+}
+
+#custom-power,
+#tray,
+#bluetooth,
+#network,
+#battery,
+#pulseaudio,
+#clock {
+    color: @foreground;
+    margin: 1px 0;
+    padding: 0 10px;
+}
+
+#custom-power:hover,
+#bluetooth:hover,
+#network:hover,
+#battery:hover,
+#pulseaudio:hover,
+#clock:hover {
+    background-color: alpha(@select, 0.6);
+}
+
+/*#bluetooth {
+    color: @yellow;
+}
+*/
+
+#cpu {
+  color: @blue;
+}
+
+#network {
+    color: @cyan;
+}
+
+#battery {
+    color: @purple;
+}
+
+#pulseaudio {
+    color: @blue;
+}
+
+#clock {
+    margin-right: 10px;
+    color: @purple;
+}
+
+#custom-power {
+    margin-left: 10px;
+    padding: 0px 10px 0 15px;
+}

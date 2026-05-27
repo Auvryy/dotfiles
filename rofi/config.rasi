@@ -1,0 +1,119 @@
+configuration {
+    modi:                "drun,run,window";
+    show-icons:          true;
+    drun-display-format: "{name}";
+    display-drun:        " Apps";
+    display-run:         " Run";
+    display-window:      " Window";
+}
+
+* {
+    font:                "JetBrains Mono Nerd Font 13";
+    background:          #1E1D2F;
+    foreground:          #D9E0EE;
+    selected:            #89b4fa;
+    selected-text-color: #11111b;
+    urgent:              #F28FAD;
+}
+
+window {
+    transparency:        "real";
+    location:            center;
+    anchor:              center;
+    width:               520px;
+    border-radius:       8px;
+    border:              1px;
+    border-color:        @selected;
+    background-color:    @background;
+    padding:             10px;
+}
+
+mainbox {
+    spacing:             8px;
+    background-color:    transparent;
+    orientation:         vertical;
+    children:            [ "inputbar", "mode-switcher", "listview" ];
+}
+
+inputbar {
+    spacing:             8px;
+    padding:             8px 10px;
+    border-radius:       6px;
+    background-color:    #2a2940;
+    text-color:          @foreground;
+    children:            [ "entry" ];
+}
+
+entry {
+    background-color:    transparent;
+    text-color:          inherit;
+    cursor:              text;
+    placeholder:         " Search apps...";
+    placeholder-color:   #6e6c7e;
+}
+
+mode-switcher {
+    spacing:             6px;
+    background-color:    transparent;
+}
+
+button {
+    padding:             6px 10px;
+    border-radius:       6px;
+    background-color:    #2a2940;
+    text-color:          #6e6c7e;
+    cursor:              pointer;
+    expand:              true;
+    horizontal-align:    0.5;
+}
+
+button selected {
+    background-color:    @selected;
+    text-color:          @selected-text-color;
+}
+
+listview {
+    columns:             1;
+    lines:               8;
+    cycle:               true;
+    dynamic:             true;
+    scrollbar:           false;
+    spacing:             2px;
+    background-color:    transparent;
+}
+
+element {
+    spacing:             10px;
+    padding:             6px 8px;
+    border-radius:       6px;
+    background-color:    transparent;
+    text-color:          @foreground;
+    cursor:              pointer;
+}
+
+element selected.normal {
+    background-color:    @selected;
+    text-color:          @selected-text-color;
+}
+
+element normal.normal {
+    background-color:    transparent;
+    text-color:          @foreground;
+}
+
+element alternate.normal {
+    background-color:    transparent;
+    text-color:          @foreground;
+}
+
+element-icon {
+    background-color:    transparent;
+    size:                28px;
+    vertical-align:      0.5;
+}
+
+element-text {
+    background-color:    transparent;
+    text-color:          inherit;
+    vertical-align:      0.5;
+}

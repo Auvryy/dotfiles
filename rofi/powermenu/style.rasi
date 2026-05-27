@@ -1,0 +1,108 @@
+configuration {
+    show-icons: false;
+}
+
+* {
+    font:           "JetBrains Mono Nerd Font 10";
+    background:     #1E1D2FFF;
+    background-alt: #282839FF;
+    foreground:     #D9E0EEFF;
+    selected:       #89b4fa;
+    active:         #ABE9B3FF;
+    urgent:         #F28FADFF;
+}
+
+window {
+    transparency:     "real";
+    location:         center;
+    anchor:           center;
+    fullscreen:       false;
+    width:            600px;
+    padding:          0px;
+    border-radius:    16px;
+    border:           2px solid;
+    border-color:     #89b4fa;
+    background-color: @background;
+}
+
+mainbox {
+    spacing:          0px;
+    padding:          0px;
+    background-color: transparent;
+    orientation:      vertical;
+    children:         [ "listview", "message" ];
+}
+
+/* top greeting block */
+// inputbar{
+//     padding:          30px 20px;
+//     background-color: #11111b;
+//     border-radius:    14px 14px 0px 0px;
+//     children:         [ "prompt" ];
+// }
+
+prompt {
+    enabled:          true;
+    background-color: transparent;
+    text-color:       #89b4fa;
+    font:             "JetBrains Mono Nerd Font Bold 16";
+}
+
+listview {
+    columns:          4;
+    lines:            1;
+    scrollbar:        false;
+    layout:           vertical;
+    fixed-height:     true;
+    fixed-columns:    true;
+    spacing:          12px;
+    margin:           20px;
+    background-color: transparent;
+}
+
+element {
+    padding:          40px 10px;  /* ← taller buttons */
+    border-radius:    14px;
+    background-color: @background-alt;
+    text-color:       @foreground;
+    cursor:           pointer;
+}
+
+element-text {
+    font:             "JetBrains Mono Nerd Font Bold 36";  /* ← bigger icons */
+    background-color: transparent;
+    text-color:       inherit;
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+}
+
+element selected.normal {
+    background-color: #89b4fa;
+    text-color:       @background;
+}
+
+element normal.normal {
+    background-color: @background-alt;
+    text-color:       @foreground;
+}
+
+element alternate.normal {
+    background-color: @background-alt;
+    text-color:       @foreground;
+}
+
+/* bottom info bar */
+message {
+    padding:          18px;
+    background-color: #11111b;
+    text-color:       @foreground;
+    border-radius:    0px 0px 14px 14px;
+}
+
+textbox {
+    background-color: transparent;
+    text-color:       #89b4fa;
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+    font:             "JetBrains Mono Nerd Font 9";
+}

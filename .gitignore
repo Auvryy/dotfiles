@@ -1,0 +1,60 @@
+# Browser data
+google-chrome/
+mozilla/
+
+# Communication & proprietary apps
+discord/
+spotify/
+Notion/
+Notion Calendar/
+obsidian/
+
+# VS Code (large, machine-specific)
+Code/
+
+# System/session state
+pulse/
+session/
+dconf/
+autostart/
+ibus/
+fcitx/
+fcitx5/
+go/
+
+# Oh My Posh
+ohmyposh/
+
+# Qt project
+QtProject/
+QtProject.conf
+
+# KDE/misc app state
+libreoffice/
+kdenliverc
+celluloid/
+vlc/
+obs-studio/
+
+# Personal/sensitive
+user-dirs.dirs
+user-dirs.locale
+mimeapps.list
+trashrc
+baloofileinformationrc
+kclockdrc
+kclockrc
+kiorc
+dolphinrc
+QtProject.conf
+menus/
+nemo/
+
+# Logs and cache
+*.log
+*.cache
+**/Cache/
+**/cache/
+**/GPUCache/
+**/logs/
+**/Crashpad/
