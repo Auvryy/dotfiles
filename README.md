@@ -49,7 +49,6 @@ Rofi-based powermenu for shutdown, reboot, lock, suspend and logout.
 | Bar | Waybar + waybar-cava |
 | Terminal | Kitty / Ghostty |
 | Shell | Zsh + Oh My Posh |
-| Multiplexer | Tmux |
 | Editor | Neovim |
 | File manager | Yazi / Dolphin |
 | Launcher | Rofi |
