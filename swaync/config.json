@@ -8,8 +8,8 @@
     "control-center-layer": "top",
     "layer-shell": true,
 
-    "control-center-width": 400,
-    "control-center-height": 850,
+    "control-center-width": 380,
+    "control-center-height": 680,
     "control-center-margin-top": 10,
     "control-center-margin-bottom": 10,
     "control-center-margin-right": 10,
@@ -82,11 +82,9 @@
                     "update-command": "sh -c '[[ $(nmcli r wifi) == \"enabled\" ]] && echo true || echo false'"
                 },
                 {
-                    "label": "󰂯",
-                    "type": "toggle",
-                    "active": true,
-                    "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && rfkill unblock bluetooth || rfkill block bluetooth'",
-                    "update-command": "sh -c \"rfkill list bluetooth | grep -q \"Soft blocked: no\" && echo true || echo false\""
+                    "label": "󰹑",
+                    "type": "button",
+                    "command": "grimblast copy area"
                 },
                 {
                     "label": " ",

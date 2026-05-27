@@ -5,7 +5,7 @@ if pidof rofi > /dev/null; then
     exit 0
 fi
 
-wallpapers_dir="$HOME/Pictures/Wallpapers"
+wallpapers_dir="$HOME/.config/wallpapers"
 
 # 1. Rofi Thumbnail Selection (Your exact working logic)
 selected_wallpaper=$(for a in "$wallpapers_dir"/*; do
