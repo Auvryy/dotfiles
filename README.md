@@ -32,6 +32,14 @@ Hyprlock with blurred wallpaper, large clock, and minimal password input.
 
 ---
 
+## Login Screen (SDDM)
+
+![SDDM](./screenshots/sddm.png)
+
+Custom sddm-astronaut-theme config — two-column layout with avatar, clock, and a frosted Catppuccin Mocha panel. Wallpaper: wallpaper-030.
+
+---
+
 ## Power Menu
 
 ![Powermenu](./screenshots/powermenu.png)
@@ -57,6 +65,7 @@ Rofi-based powermenu for shutdown, reboot, lock, suspend and logout.
 | Audio visualizer | Cava |
 | Clipboard | cliphist + wl-copy |
 | Logout menu | Wlogout |
+| Login manager | SDDM (sddm-astronaut-theme) |
 | Browser | Google Chrome |
 | Input method (JP) | Fcitx5 |
 | System info | Fastfetch |
@@ -69,7 +78,7 @@ Rofi-based powermenu for shutdown, reboot, lock, suspend and logout.
 ```
 ~/.config/
 ├── hypr/           # Hyprland & Hyprlock config
-├── auvry/          # Custom scripts (wallpaper, launcher, clipboard, etc.)
+├── auvry/          # Custom scripts + SDDM theme config & QML overrides
 ├── waybar/         # Status bar
 ├── rofi/           # App launcher & powermenu
 ├── swaync/         # Notification center
