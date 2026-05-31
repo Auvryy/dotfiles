@@ -1,0 +1,114 @@
+{
+    "Created": "Phunt_Vieg_",
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "palette": {
+        "bg":       "#1e1e2e",
+        "fg":       "#cdd6f4",
+        "black":    "#181825",
+        "white":    "#CDD6F4",
+        "blue":     "#89B4FA",
+        "main-blue":"#B0CBFF",
+        "lavender": "#B4BEFE",
+        "cyan":     "#78E9FE",
+        "teal":     "#94E2D5",
+        "green":    "#A6E3A1",
+        "purple":   "#CBA6F7",
+        "red":      "#F38BA8",
+        "pink":     "#F5C2E7",
+        "yellow":   "#F9E2AF",
+        "orange":   "#FAB387",
+        "select":   "#585b70"
+    },
+    "blocks": [
+        {
+            "type": "prompt",
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "foreground": "p:select",
+                    "style": "plain",
+                    "template": "╭─",
+                    "type": "text"
+                },
+                {
+                    "background": "p:main-blue",
+                    "foreground": "p:black",
+                    "leading_diamond": "",
+                    "style": "diamond",
+                    "template": "{{ if ne (.Segments.Contains \"Python\") true }}  {{ .UserName }} {{ end }}",
+                    "trailing_diamond": "",
+                    "type": "session"
+                },
+                {
+                    "background": "p:main-blue",
+                    "foreground": "p:black",
+                    "leading_diamond": "",
+                    "properties": {
+                        "display_mode": "environment",
+                        "home_enabled": true,
+                        "folder_name_fallback": false
+                    },
+                    "style": "diamond",
+                    "template": "  ({{ .Venv }}) ",
+                    "trailing_diamond": "",
+                    "type": "python"
+                },
+                {
+                    "background": "p:blue",
+                    "foreground": "p:black",
+                    "properties": {
+                        "style": "full"
+                    },
+                    "style": "diamond",
+                    "template": "  {{ .Path }} ",
+                    "trailing_diamond": "",
+                    "type": "path"
+                },
+                {
+                    "background": "p:cyan",
+                    "foreground": "p:black",
+                    "properties": {
+                        "branch_icon": "",
+                        "fetch_stash_count": true,
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true
+                    },
+                    "style": "diamond",
+                    "template": "  {{ .UpstreamIcon }} {{ .HEAD }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} ",
+                    "trailing_diamond": "",
+                    "type": "git"
+                },
+                {
+                    "background": "p:lavender",
+                    "foreground": "p:black",
+                    "properties": {
+                        "time_format": "15:04"
+                    },
+                    "style": "diamond",
+                    "template": "{{ if ne (.Segments.Contains \"Git\") true }}  {{ .CurrentDate | date .Format }} {{ end }}",
+                    "trailing_diamond": "",
+                    "type": "time"
+                }
+            ]
+        },
+        {
+            "type": "prompt",
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "foreground": "p:select",
+                    "style": "plain",
+                    "template": "╰─<p:cyan>❯</>",
+                    "type": "text"
+                }
+            ]
+        }
+    ],
+    "transient_prompt": {
+        "template": "<p:cyan>❯</><p:blue>❯</><p:lavender>❯</> "
+    },
+    "final_space": true,
+    "version": 8
+}
