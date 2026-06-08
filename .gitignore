@@ -12,6 +12,9 @@ obsidian/
 # VS Code (large, machine-specific)
 Code/
 
+# GPU screen recorder — session token & stream keys
+gpu-screen-recorder/
+
 # System/session state
 pulse/
 session/

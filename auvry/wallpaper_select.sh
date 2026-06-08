@@ -37,5 +37,7 @@ else
     awww img "$image_fullname_path" --transition-type any --transition-duration 2
 fi
 
+~/.config/auvry/apply_theme.sh "$image_fullname_path"
+
 # 5. Run your background effects script
 ~/.config/auvry/wallpaper_effects.sh
