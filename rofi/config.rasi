@@ -7,14 +7,10 @@ configuration {
     display-window:      " Window";
 }
 
+@import "colors.rasi"
+
 * {
     font:                "JetBrains Mono Nerd Font 13";
-    background:          rgba(30, 29, 47, 0);
-    background-solid:    #1E1D2F;
-    foreground:          #D9E0EE;
-    selected:            #89b4fa;
-    selected-text-color: #11111b;
-    urgent:              #F28FAD;
 }
 
 window {
@@ -25,7 +21,7 @@ window {
     border-radius:       12px;
     border:              1px;
     border-color:        @selected;
-    background-color:    #1E1D2F;
+    background-color:    @background-solid;
     padding:             10px;
 }
 
@@ -40,7 +36,7 @@ inputbar {
     spacing:             8px;
     padding:             8px 10px;
     border-radius:       6px;
-    background-color:    #2a2940;
+    background-color:    @background-alt;
     text-color:          @foreground;
     children:            [ "entry" ];
 }
@@ -50,7 +46,7 @@ entry {
     text-color:          inherit;
     cursor:              text;
     placeholder:         " Search apps...";
-    placeholder-color:   #6e6c7e;
+    placeholder-color:   @dim;
 }
 
 mode-switcher {
@@ -61,8 +57,8 @@ mode-switcher {
 button {
     padding:             6px 10px;
     border-radius:       6px;
-    background-color:    #2a2940;
-    text-color:          #6e6c7e;
+    background-color:    @background-alt;
+    text-color:          @dim;
     cursor:              pointer;
     expand:              true;
     horizontal-align:    0.5;

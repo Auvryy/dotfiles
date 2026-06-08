@@ -1,0 +1,16 @@
+@define-color background {{colors.surface.default.hex}};
+@define-color foreground {{colors.on_surface.default.hex}};
+@define-color select     {{colors.surface_container_high.default.hex}};
+
+@define-color pink       {{colors.tertiary_container.default.hex}};
+@define-color purple     {{colors.secondary.default.hex}};
+@define-color red        {{colors.error.default.hex}};
+@define-color orange     {{colors.tertiary.default.hex}};
+@define-color yellow     {{colors.secondary_container.default.hex}};
+@define-color green      {{colors.primary_container.default.hex}};
+@define-color blue       {{colors.primary.default.hex}};
+@define-color gray       {{colors.outline.default.hex}};
+
+@define-color main-blue  {{colors.primary.default.hex}};
+@define-color white      {{colors.on_surface.default.hex}};
+@define-color cyan       {{colors.tertiary.default.hex}};
