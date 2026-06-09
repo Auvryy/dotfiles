@@ -1,0 +1,32 @@
+set font "JetBrainsMono Nerd Font 11"
+
+set default-bg "#1e1e2e"
+set default-fg "#cdd6f4"
+
+set statusbar-bg "#181825"
+set statusbar-fg "#cdd6f4"
+
+set inputbar-bg "#181825"
+set inputbar-fg "#cdd6f4"
+
+set notification-bg "#181825"
+set notification-fg "#cdd6f4"
+set notification-error-bg "#f38ba8"
+set notification-error-fg "#1e1e2e"
+set notification-warning-bg "#f9e2af"
+set notification-warning-fg "#1e1e2e"
+
+set highlight-color "#89b4fa"
+set highlight-active-color "#b4befe"
+
+set completion-bg "#181825"
+set completion-fg "#cdd6f4"
+set completion-highlight-bg "#89b4fa"
+set completion-highlight-fg "#1e1e2e"
+
+# Sepia / warm tone toggle
+set recolor-lightcolor "#f5e6c8"
+set recolor-darkcolor  "#3b2a1a"
+set recolor false
+
+map <C-i> recolor
