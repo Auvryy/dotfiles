@@ -15,3 +15,7 @@ output_path = '~/.config/hypr/hyprlock.conf'
 [templates.cava]
 input_path = '~/.config/matugen/templates/cava'
 output_path = '~/.config/cava/config'
+
+[templates.btop]
+input_path = '~/.config/matugen/templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
