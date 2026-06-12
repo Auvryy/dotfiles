@@ -8,7 +8,7 @@ My personal Arch Linux + Hyprland setup.
 
 ![Desktop Preview 1](./screenshots/preview-1.png)
 
-Desktop overview featuring btop system monitor, Cava audio visualizer, and tty-clock.
+Desktop overview featuring btop system monitor, Cava audio visualizer, and clock-tui.
 
 ---
 
@@ -55,10 +55,12 @@ Rofi-based powermenu for shutdown, reboot, lock, suspend and logout.
 | OS | Arch Linux |
 | WM | Hyprland |
 | Bar | Waybar + waybar-cava |
-| Terminal | Kitty / Ghostty |
-| Shell | Zsh + Oh My Posh |
+| Terminal | Kitty |
+| Shell | Bash + Oh My Posh |
 | Editor | Neovim |
-| File manager | Yazi / Dolphin |
+| File manager | Yazi |
+| PDF viewer | Zathura |
+| Clock / Timer | clock-tui (tclock) |
 | Launcher | Rofi |
 | Notifications | Swaync |
 | Wallpaper | awww + mpvpaper |
@@ -86,8 +88,8 @@ Rofi-based powermenu for shutdown, reboot, lock, suspend and logout.
 ├── swaync/         # Notification center
 ├── wlogout/        # Logout menu
 ├── kitty/          # Kitty terminal
-├── ghostty/        # Ghostty terminal
 ├── nvim/           # Neovim
+├── zathura/        # PDF viewer
 ├── btop/           # System monitor
 ├── cava/           # Audio visualizer
 ├── matugen/        # Wallpaper-based color generation (templates + config)
@@ -103,12 +105,12 @@ Rofi-based powermenu for shutdown, reboot, lock, suspend and logout.
 The color scheme follows the wallpaper. Changing wallpaper (via `Super + W` or
 `Super + Shift + W`) runs [`auvry/apply_theme.sh`](./auvry/apply_theme.sh),
 which calls **matugen** to extract a palette from the image and regenerate
-colors for **Waybar, Swaync, Rofi, Hyprlock and Cava**, then live-reloads
+colors for **Waybar, Swaync, Rofi, Hyprlock, Cava and Btop**, then live-reloads
 Waybar and Swaync.
 
 - Templates live in `matugen/templates/` — edit these, not the generated files.
 - Generated outputs (`colors/colors.css`, `rofi/colors.rasi`, `hypr/hyprlock.conf`,
-  `cava/config`) are overwritten on every wallpaper change.
+  `cava/config`, `btop/themes/matugen.theme`) are overwritten on every wallpaper change.
 - Videos are skipped (no colors to extract); the lock screen background tracks
   the current wallpaper automatically.
 
@@ -131,6 +133,21 @@ Waybar and Swaync.
 | `Ctrl + Print` | Screenshot region → clipboard |
 | `Ctrl + Shift + Print` | Screenshot region → save to file |
 | `Super + Shift + S` | Screenshot region → clipboard |
+| `Super + R` | Book launcher (Zathura) |
+
+---
+
+## Clock (clock-tui)
+
+Color syncs with the current wallpaper theme via matugen. Aliases available in `.bashrc`:
+
+| Command | Action |
+|---|---|
+| `clock` | Digital clock with date |
+| `stopwatch` | Stopwatch (milliseconds visible) |
+| `timer 25m` | Countdown timer, no decimals |
+| `timer 25m 5m` | Sequential timers (e.g. Pomodoro) |
+| `countdown 23:00` | Countdown to a specific time |
 
 ---
 
