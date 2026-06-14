@@ -1,11 +1,11 @@
 * {
-    background:          #13131800;
-    background-solid:    #131318;
-    background-alt:      #2a292f;
+    background:          #14131800;
+    background-solid:    #141318;
+    background-alt:      #2b292f;
     foreground:          #e5e1e9;
-    selected:            #c6bfff;
-    selected-text-color: #2e295f;
-    active:              #ecb8cf;
+    selected:            #c9beff;
+    selected-text-color: #31285f;
+    active:              #edb8cd;
     urgent:              #ffb4ab;
-    dim:                 #928f99;
+    dim:                 #938f99;
 }

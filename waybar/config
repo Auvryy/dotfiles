@@ -1,7 +1,7 @@
 {
     "modules-left": ["custom/powermenu", "custom/pacman", "tray","cava"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": [ /*"bluetooth"*/ "network", "cpu", "battery", "pulseaudio", "clock"],
+    "modules-right": [ /*"bluetooth"*/ "custom/weather", "network", "cpu", "battery", "pulseaudio", "clock"],
 
     "custom/powermenu": {
         "format" : " ",
@@ -79,6 +79,14 @@
     "interval": 2,
     "format": "󰻠 {usage}%",
     "tooltip": true
+    },
+
+    "custom/weather": {
+        "exec": "wttrbar --location 'Taal, Batangas,Philippines' --main-indicator temp_C --date-format '%d %b' --hide-conditions", //change the location here
+        "return-type": "json",
+        "interval": 3400,
+        "tooltip": true,
+        "format": "{}",
     },
 
     "network": {

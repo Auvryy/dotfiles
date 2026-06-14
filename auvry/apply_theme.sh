@@ -11,6 +11,8 @@ esac
 
 matugen image "$wallpaper" -m dark --prefer saturation || exit 0
 
-pkill -SIGUSR2 waybar 2>/dev/null
+pkill waybar 2>/dev/null
+sleep 0.5
+waybar &
 swaync-client --reload-css 2>/dev/null
 swaync-client --reload-config 2>/dev/null
