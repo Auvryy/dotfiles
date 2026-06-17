@@ -217,12 +217,12 @@
 [color]
 gradient = 1
 
-gradient_color_1 = '#c9beff'
-gradient_color_2 = '#c9c3dc'
-gradient_color_3 = '#edb8cd'
-gradient_color_4 = '#483f77'
-gradient_color_5 = '#623b4c'
-gradient_color_6 = '#e5e1e9'
+gradient_color_1 = '#bbcf82'
+gradient_color_2 = '#c3caa9'
+gradient_color_3 = '#a1d0c6'
+gradient_color_4 = '#3d4c0e'
+gradient_color_5 = '#204e47'
+gradient_color_6 = '#e3e3d7'
 
 
 
