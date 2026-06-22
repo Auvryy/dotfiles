@@ -50,6 +50,8 @@ kiorc
 dolphinrc
 menus/
 nemo/
+antimicrox/
+input-remapper-2/
 
 # Logs and cache
 *.log

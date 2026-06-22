@@ -4,8 +4,8 @@
         "type": "builtin",
         "source": "arch",
         "color": {
-            "1": "#bbcf82",
-            "2": "#e3e3d7"
+            "1": "#c6bfff",
+            "2": "#e5e1e9"
         },
         "padding": {
             "top": 1,
@@ -15,17 +15,17 @@
     "display": {
         "separator": "  ",
         "color": {
-            "keys":   "#bbcf82",
-            "title":  "#a1d0c6"
+            "keys":   "#c6bfff",
+            "title":  "#ecb8cf"
         }
     },
     "modules": [
         {
             "type": "title",
             "color": {
-                "user":   "#bbcf82",
-                "at":     "#909284",
-                "host":   "#a1d0c6"
+                "user":   "#c6bfff",
+                "at":     "#928f99",
+                "host":   "#ecb8cf"
             }
         },
         "separator",
