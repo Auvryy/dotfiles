@@ -18,7 +18,9 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.lang.typescript" }, -- TS/JS/React/Next.js Intellisense
+    { import = "lazyvim.plugins.extras.lang.tailwind" }, -- Tailwind CSS Intellisense
+    { import = "lazyvim.plugins.extras.lang.python" }, -- Python Intellisense & Typechecking
     -- import/override with your plugins
     { import = "plugins" },
   },
