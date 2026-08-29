@@ -136,32 +136,43 @@ tooltip {
 
 /* Buttons grid */
 .widget-buttons-grid {
-    font-size: 0.95rem;
-    padding: 10px 10px 6px;
-    margin: unset;
+    font-size: 1rem;
+    padding: 6px 4px;
+    margin: 0;
+}
+.widget-buttons-grid > flowbox {
+    margin: 0 auto;
+    padding: 0;
+}
+.widget-buttons-grid > flowbox > flowboxchild {
+    padding: 0;
+    margin: 0 3px;
 }
 .widget-buttons-grid > flowbox > flowboxchild > button {
-    background: alpha(@gray, 0.5);
-    border-radius: 10px;
-    min-width: 55px;
-    min-height: 26px;
-    padding: 5px;
-    margin: 0 2px;
-    transition: all 0.3s ease;
+    background: alpha(@gray, 0.4);
+    border-radius: 8px;
+    min-width: 68px;
+    min-height: 30px;
+    padding: 4px 8px;
+    margin: 0;
+    transition: all 0.25s ease;
     border: 1px solid alpha(@gray, 0.3);
+    color: @foreground;
 }
 .widget-buttons-grid > flowbox > flowboxchild > button:hover {
-    background: alpha(@select, 0.8);
+    background: alpha(@select, 0.85);
+    border-color: alpha(@blue, 0.4);
+    color: @blue;
 }
 .widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
-    background: alpha(@blue, 0.3);
-    border-color: alpha(@blue, 0.6);
+    background: alpha(@blue, 0.35);
+    border-color: alpha(@blue, 0.7);
     color: @blue;
 }
 
 /* Mpris */
 :root {
-  --mpris-album-art-overlay: transparent;
+  --mpris-album-art-overlay: #292b23;
   --mpris-album-art-icon-size: 52px;
 }
 
@@ -176,8 +187,8 @@ tooltip {
     padding: 0;
     margin: 6px 10px;
     border-radius: 10px;
-    background-color: @select !important;
-    background: @select !important;
+    background-color: #292b23 !important;
+    background: #292b23 !important;
     background-image: none !important;
     border: 1px solid alpha(@blue, 0.35);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -191,7 +202,7 @@ tooltip {
     background: transparent !important;
     display: none !important;
     opacity: 0 !important;
-    filter: none !important;
+    filter: opacity(0) !important;
     min-width: 0 !important;
     min-height: 0 !important;
     margin: 0 !important;
@@ -201,9 +212,10 @@ tooltip {
 .mpris-overlay,
 .widget-mpris-player .mpris-overlay,
 .widget-mpris .widget-mpris-player .mpris-overlay {
-    background-color: @select !important;
-    background: @select !important;
+    background-color: #292b23 !important;
+    background: #292b23 !important;
     background-image: none !important;
+    opacity: 1 !important;
     padding: 12px 14px;
     border-radius: 10px;
 }
