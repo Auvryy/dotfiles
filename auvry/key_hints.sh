@@ -5,32 +5,48 @@ if pidof yad > /dev/null; then
 fi
 
 yad --center --title="Keybinding Hints" --no-buttons --list \
-    --column=Key: --column="" --column=Description: \
+    --column="Key:" --column="" --column="Description:" \
     --timeout-indicator=bottom \
 "  =   "          "        "  "SUPER KEY (Windows Key Button)" \
 "" "" "" \
-"  H"              "        "  "Show keybinding hints" \
-"  Space"          "        "  "Open terminal" \
-"  E"              "        "  "Open file manager" \
-"  B"              "        "  "Open browser" \
+"  Return"         "        "  "Open Kitty terminal" \
+"  E"              "        "  "Open file manager (Yazi)" \
+"  B"              "        "  "Open browser (Zen Browser)" \
+"  Space"          "        "  "App launcher (Rofi)" \
+"  Ctrl H"         "        "  "Show keybinding hints" \
+"  I"              "        "  "Toggle sunset warm mode" \
 "" "" "" \
-"  Shift Ctrl Esc" "        "  "Exit Hyprland" \
 "  Q"              "        "  "Close active window" \
-"  Shift Q"        "        "  "Kill active window by PID" \
+"  Shift Q"        "        "  "Kill active window process" \
+"  G"              "        "  "Toggle floating" \
+"  F"              "        "  "Toggle fullscreen" \
+"  P"              "        "  "Toggle pseudo-tile (dwindle)" \
+"ALT Tab"           "        "  "Cycle next window" \
+"ALT Shift Tab"     "        "  "Cycle previous window" \
 "" "" "" \
-"  F"              "        "  "Toggle floating" \
-"  P"              "        "  "Toggle pseudo (dwindle)" \
-"  J"              "        "  "Toggle split (dwindle)" \
+"  Ctrl L"         "        "  "Lock screen (Hyprlock)" \
+"  Shift L"        "        "  "Power menu (Rofi)" \
+"  Shift Ctrl Esc" "        "  "Exit Hyprland session" \
 "" "" "" \
-"  L"              "        "  "Lock screen" \
-"ALT Space"         "        "  "App launcher" \
 "  ."              "        "  "Emoji selector" \
-"  V"              "        "  "Clipboard manager" \
-"  W"              "        "  "Choose wallpaper" \
+"  V"              "        "  "Clipboard history" \
+"  W"              "        "  "Select wallpaper" \
 "  Shift W"        "        "  "Random wallpaper" \
-"  Shift S"        "        "  "Screenshot (region)" \
+"  T"              "        "  "Notification center (SwayNC)" \
+"  R"              "        "  "Book launcher" \
+"" "" "" \
+"  S"              "        "  "Screenshot (region -> file)" \
+"  Shift S"        "        "  "Screenshot (region -> clipboard)" \
+"  A"              "        "  "Screenshot (screen -> file)" \
+"  Shift A"        "        "  "Screenshot (screen -> clipboard)" \
+"" "" "" \
+"  H / J / K / L"  "        "  "Focus left / down / up / right" \
+"  [← / ↓ / ↑ / →]" "       "  "Resize active window" \
+"  Shift [Arrows]"  "       "  "Move active window" \
 "" "" "" \
 "  [1 -> 0]"       "        "  "Switch workspace 1-10" \
 "  Shift [1 -> 0]" "        "  "Move window to workspace 1-10" \
+"  Escape"         "        "  "Toggle special workspace (scratchpad)" \
+"  Shift Escape"   "        "  "Move window to special workspace" \
 "" "" "" \
-"More Keybinding"   "        "  "$HOME/.config/hypr/conf/keybinding.conf"
+"More Keybindings"  "        "  "$HOME/.config/hypr/conf/keybinding.lua"
