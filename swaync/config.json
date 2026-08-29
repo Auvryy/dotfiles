@@ -20,8 +20,8 @@
     "notification-body-image-height": 200,
     "notification-body-image-width": 200,
 
-    "timeout": 3,
-    "timeout-low": 2,
+    "timeout": 4,
+    "timeout-low": 3,
     "timeout-critical": 0,
  
     "fit-to-screen": false,
@@ -33,10 +33,17 @@
     "text-empty": "No Notifications",
     "script-fail-notify": true,
     "notification-visibility": {
-        "example-name": {
-            "state": "muted",
-            "urgency": "Low",
-            "app-name": "Spotify"
+        "screenshot-transient": {
+            "state": "transient",
+            "summary": ".*[Ss]creenshot.*"
+        },
+        "hyprshot-transient": {
+            "state": "transient",
+            "app-name": "hyprshot"
+        },
+        "grimblast-transient": {
+            "state": "transient",
+            "app-name": "grimblast"
         }
     },
     "widgets": [
@@ -50,8 +57,9 @@
     ],
     "widget-config": {
         "mpris": {
-            "image-size": 50,
-            "image-radius": 0
+            "image-size": 52,
+            "image-radius": 8,
+            "blur": false
         },
         "volume": {
             "label": " 󰕾 ",
@@ -59,7 +67,7 @@
             "collapse-button-label": " ",
             "show-per-app": true,
             "show-per-app-icon": true,
-            "show-per-app-label": false
+            "show-per-app-label": true
         },
         "backlight": {
             "label": "󰃟 "
@@ -73,6 +81,7 @@
             "button-text": " 󰆴 "
         },
         "buttons-grid": {
+            "buttons-per-row": 4,
             "actions": [
                 {
                     "label": " ",

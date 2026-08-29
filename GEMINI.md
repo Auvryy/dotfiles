@@ -8,9 +8,10 @@
 
 ## Strict Security & Safety Guardrails
 
-1. **No Destructive Deletions:**
+1. **No Destructive Deletions & Deletion Suggestions:**
    - NEVER run `rm -rf`, `rm`, or delete any files without creating a `.bak` copy first.
-   - Always ask for explicit confirmation before deleting anything.
+   - After completing any task or feature, if there are obsolete, leftover, duplicate, or deprecated files, proactively list and suggest their deletion in the chat.
+   - The user has total control over all deletions; NEVER delete anything without the user's explicit request and approval.
 
 2. **Protect Secrets & Sensitive Data:**
    - NEVER inspect, read, print, or modify any files containing tokens, passwords, `.env`, SSH keys (`~/.ssh/`), or GPG keys.
