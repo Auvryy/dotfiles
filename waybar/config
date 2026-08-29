@@ -22,7 +22,8 @@
         "all-outputs": true,
         "warp-on-scroll": false,
         "format": "{name}",
-        "cursor": true,
+        "on-click": "activate",
+        "cursor": true
     },
 
     "custom/pacman": {
