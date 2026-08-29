@@ -70,6 +70,8 @@ tooltip {
 }
 
 #custom-power,
+#custom-terminal,
+#custom-notification,
 #tray,
 #bluetooth,
 #network,
@@ -81,7 +83,26 @@ tooltip {
     padding: 0 10px;
 }
 
+#custom-terminal {
+    color: @main-blue;
+    padding: 0 8px;
+    margin-left: 5px;
+}
+
+#custom-notification {
+    margin-right: 12px;
+    padding: 0 8px;
+    font-size: 16px;
+}
+
+#custom-notification.notification,
+#custom-notification.dnd-notification {
+    color: @red;
+}
+
 #custom-power:hover,
+#custom-terminal:hover,
+#custom-notification:hover,
 #bluetooth:hover,
 #network:hover,
 #battery:hover,
@@ -112,7 +133,7 @@ tooltip {
 }
 
 #clock {
-    margin-right: 10px;
+    margin-right: 5px;
     color: @purple;
 }
 

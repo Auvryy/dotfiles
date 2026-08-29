@@ -1,12 +1,20 @@
 {
-    "modules-left": ["custom/powermenu", "custom/pacman", "tray","cava"],
+    "modules-left": ["custom/powermenu", "custom/terminal", "custom/pacman", "tray", "cava"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": [ /*"bluetooth"*/ "custom/weather", "network", "cpu", "battery", "pulseaudio", "clock"],
+    "modules-right": [ /*"bluetooth"*/ "custom/weather", "network", "cpu", "battery", "pulseaudio", "clock", "custom/notification"],
 
     "custom/powermenu": {
         "format" : " ",
         "tooltip": false,
         "on-click": "~/.config/rofi/powermenu/powermenu.sh",
+    },
+
+    "custom/terminal": {
+        "format": " ",
+        "tooltip": true,
+        "tooltip-format": "Launch Kitty Terminal",
+        "on-click": "kitty",
+        "cursor": true,
     },
 
     "hyprland/workspaces": {
@@ -141,5 +149,26 @@
             }
         },
         "on-click": "swaync-client -t -sw",
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󱅫 ",
+            "none": "󰂚 ",
+            "dnd-notification": "󱅫 ",
+            "dnd-none": "󰂛 ",
+            "inhibited-notification": "󱅫 ",
+            "inhibited-none": "󰂚 ",
+            "dnd-inhibited-notification": "󱅫 ",
+            "dnd-inhibited-none": "󰂛 "
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     }
 }
