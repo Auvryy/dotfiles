@@ -2,7 +2,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Binds/
 -- See https://wiki.hypr.land/Configuring/Basics/Dispatchers/
 
-local programs = require("conf.programs")
+local programs = require("modules.programs")
 
 local mainMod = "SUPER"
 

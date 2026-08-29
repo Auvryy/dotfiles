@@ -1,0 +1,12 @@
+source = ~/.config/hypr/conf/monitors.conf
+source = ~/.config/hypr/conf/programs.conf
+source = ~/.config/hypr/conf/autostart.conf
+source = ~/.config/hypr/conf/environment.conf
+source = ~/.config/hypr/conf/appearance.conf
+source = ~/.config/hypr/conf/animation.conf
+source = ~/.config/hypr/conf/layout.conf
+source = ~/.config/hypr/conf/misc.conf
+source = ~/.config/hypr/conf/input.conf
+source = ~/.config/hypr/conf/keybinding.conf
+source = ~/.config/hypr/conf/windowrule.conf
+source = ~/.config/hypr/conf/workspaces.conf
