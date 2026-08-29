@@ -8,9 +8,14 @@ spotify/
 Notion/
 Notion Calendar/
 obsidian/
+Proton/
 
-# VS Code (large, machine-specific)
+# IDEs & Developer Tools (machine-specific / credentials / session state)
 Code/
+Antigravity/
+composer/
+psysh/
+tool_state
 
 # GPU screen recorder — session token & stream keys
 gpu-screen-recorder/
@@ -24,11 +29,12 @@ ibus/
 fcitx/
 fcitx5/
 go/
-
+yay/
 
 # Qt leftovers
 QtProject/
 QtProject.conf
+qtvirtualkeyboard/
 
 # KDE/misc app state
 libreoffice/
@@ -64,3 +70,18 @@ stripe/
 **/GPUCache/
 **/logs/
 **/Crashpad/
+
+# Backup files
+*.bak
+
+# Secrets, Databases, History & Keys (Security Guardrails)
+*.sqlite*
+*.db
+*.token
+*_history
+*history
+.env
+.env.*
+*.key
+*.pem
+*.kdbx
