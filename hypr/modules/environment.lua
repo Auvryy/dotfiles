@@ -15,8 +15,7 @@ hl.env("MOZ_ENABLE_WAYLAND", "1")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
 hl.env("OZONE_PLATFORM", "wayland")
 
--- Input method variables
-hl.env("GTK_IM_MODULE", "fcitx5")
+-- Input method variables (GTK_IM_MODULE is unset for native Wayland text-input protocol)
 hl.env("QT_IM_MODULE", "fcitx5")
 hl.env("XMODIFIERS", "@im=fcitx5")
 hl.env("INPUT_METHOD", "fcitx5")

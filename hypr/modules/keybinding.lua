@@ -21,7 +21,7 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(programs.fileManager), {
 })
 
 -- Launch Browser (Zen Browser)
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd('pgrep -x zen-browser && zen-browser "about:home" || (zen-browser & sleep 1.5 && zen-browser "about:home")'), {
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd('pgrep -x zen-browser && zen-browser "file:///home/andy/.config/zen/startpage/index.html" || (zen-browser "file:///home/andy/.config/zen/startpage/index.html" &)'), {
     description = "Launch Web Browser (Zen Browser)",
 })
 

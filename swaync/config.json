@@ -32,10 +32,35 @@
     "hide-on-action": true,
     "text-empty": "No Notifications",
     "script-fail-notify": true,
+    "scripts": {
+        "screenshot-summary-silent": {
+            "summary": ".*([Ss]creenshot|[Hh]yprshot|[Gg]rimblast).*",
+            "exec": "true"
+        },
+        "hyprshot-silent": {
+            "app-name": "(?i)hyprshot",
+            "exec": "true"
+        },
+        "grimblast-silent": {
+            "app-name": "(?i)grimblast",
+            "exec": "true"
+        },
+        "antigravity-app-silent": {
+            "app-name": "(?i)antigravity",
+            "exec": "true"
+        },
+        "antigravity-summary-silent": {
+            "summary": ".*(?i)antigravity.*",
+            "exec": "true"
+        },
+        "play-tuturu-sound": {
+            "exec": "/home/andy/.config/swaync/play_sound.sh"
+        }
+    },
     "notification-visibility": {
-        "screenshot-transient": {
+        "screenshot-summary-transient": {
             "state": "transient",
-            "summary": ".*[Ss]creenshot.*"
+            "summary": ".*([Ss]creenshot|[Hh]yprshot|[Gg]rimblast).*"
         },
         "hyprshot-transient": {
             "state": "transient",
@@ -44,6 +69,14 @@
         "grimblast-transient": {
             "state": "transient",
             "app-name": "grimblast"
+        },
+        "antigravity-app-transient": {
+            "state": "transient",
+            "app-name": "(?i)antigravity"
+        },
+        "antigravity-summary-transient": {
+            "state": "transient",
+            "summary": ".*(?i)antigravity.*"
         }
     },
     "widgets": [

@@ -21,6 +21,7 @@ tool_state
 gpu-screen-recorder/
 
 # System/session state
+systemd/
 pulse/
 session/
 dconf/
