@@ -28,3 +28,7 @@ output_path = '~/.config/fastfetch/config.jsonc'
 input_path = '~/.config/matugen/templates/kitty.conf'
 output_path = '~/.config/kitty/kitty.conf'
 
+[templates.nvim]
+input_path = '~/.config/matugen/templates/matugen-colors.lua'
+output_path = '~/.config/nvim/lua/config/matugen_colors.lua'
+
