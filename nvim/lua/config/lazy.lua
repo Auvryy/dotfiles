@@ -18,9 +18,18 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    -- Languages
     { import = "lazyvim.plugins.extras.lang.typescript" }, -- TS/JS/React/Next.js Intellisense
     { import = "lazyvim.plugins.extras.lang.tailwind" }, -- Tailwind CSS Intellisense
     { import = "lazyvim.plugins.extras.lang.python" }, -- Python Intellisense & Typechecking
+    { import = "lazyvim.plugins.extras.lang.php" }, -- PHP & Composer
+    { import = "lazyvim.plugins.extras.lang.go" }, -- Go & Delve
+    { import = "lazyvim.plugins.extras.lang.rust" }, -- Rust & Cargo
+    { import = "lazyvim.plugins.extras.lang.markdown" }, -- Markdown preview & formatting
+    { import = "lazyvim.plugins.extras.lang.json" }, -- JSON & SchemaStore
+    { import = "lazyvim.plugins.extras.lang.yaml" }, -- YAML & SchemaStore
+    -- Color preview ("color thing") for hex codes and Tailwind CSS
+    { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
     -- import/override with your plugins
     { import = "plugins" },
   },
@@ -33,7 +42,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
