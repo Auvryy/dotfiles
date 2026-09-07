@@ -32,6 +32,9 @@ hl.bind(mainMod .. " + CTRL + H", hl.dsp.exec_cmd("~/.config/auvry/key_hints.sh"
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/auvry/toggle_sunset.sh"), {
     description = "Toggle Hyprsunset Warm Mode",
 })
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("~/.config/eww/scripts/toggle.sh"), {
+    description = "Toggle Left Side Dashboard",
+})
 
 --------------------------------------------------------------------------------
 -- 2. WINDOW MANAGEMENT

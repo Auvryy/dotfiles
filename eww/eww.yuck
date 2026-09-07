@@ -1,0 +1,184 @@
+;; =============================================================================
+;; Eww Left Dashboard Configuration
+;; Aesthetic floating panel with circular gauges, Spotify music bar, & Laguna weather
+;; =============================================================================
+
+;; -----------------------------------------------------------------------------
+;; 1. POLLING VARIABLES
+;; -----------------------------------------------------------------------------
+(defpoll time_hour :interval "1s" "date '+%I'")
+(defpoll time_min :interval "1s" "date '+%M'")
+(defpoll time_period :interval "1s" "date '+%p'")
+(defpoll date_day :interval "1s" "date '+%A'")
+(defpoll date_full :interval "1m" "date '+%B %d, %Y'")
+
+(defpoll cal_day :interval "1h" "date '+%d'")
+(defpoll cal_year :interval "1h" "date '+%Y'")
+
+(defpoll cpu_val :interval "2s" "scripts/cpu.sh")
+(defpoll ram_val :interval "2s" "free | awk '/^Mem:/ {printf(\"%.0f\", $3/$2 * 100)}'")
+(defpoll disk_val :interval "10s" "df -h / | awk 'NR==2 {print $5}' | tr -d '%'")
+
+(defpoll weather_temp :interval "5m" "scripts/weather.sh temp")
+(defpoll weather_desc :interval "5m" "scripts/weather.sh desc")
+(defpoll weather_icon :interval "5m" "scripts/weather.sh icon")
+
+(defpoll music_title :interval "1s" "scripts/music.sh title")
+(defpoll music_artist :interval "1s" "scripts/music.sh artist")
+(defpoll music_icon :interval "1s" "scripts/music.sh icon")
+(defpoll music_cover :interval "2s" "scripts/music.sh cover")
+(defpoll music_time :interval "1s" "scripts/music.sh time")
+(defpoll music_progress :interval "1s" "scripts/music.sh progress")
+
+;; -----------------------------------------------------------------------------
+;; 2. WIDGET COMPONENTS
+;; -----------------------------------------------------------------------------
+
+;; Clock & Santa Cruz Weather (Unified Header Card)
+(defwidget clock_weather_card []
+  (box :class "card header-card" :orientation "horizontal" :space-evenly true
+    ;; Left: Clock & Date
+    (box :class "header-left" :orientation "vertical" :space-evenly false :spacing 2 :valign "center" :halign "start"
+      (box :orientation "horizontal" :space-evenly false :spacing 6
+        (label :class "time-digits" :text "${time_hour}:${time_min}")
+        (label :class "time-period" :text "${time_period}")
+      )
+      (label :class "date-day" :text "${date_day}")
+      (label :class "date-full" :text "${date_full}")
+    )
+    ;; Right: Santa Cruz, Laguna Weather
+    (box :class "header-right" :orientation "vertical" :space-evenly false :spacing 2 :valign "center" :halign "end"
+      (box :orientation "horizontal" :space-evenly false :spacing 6 :halign "end"
+        (label :class "weather-icon" :text "${weather_icon}")
+        (label :class "weather-temp" :text "${weather_temp}")
+      )
+      (label :class "weather-desc" :halign "end" :text "${weather_desc}")
+      (label :class "weather-loc" :halign "end" :text "Santa Cruz, Laguna")
+    )
+  )
+)
+
+;; Hardware Resources (3 Squircle Tiles with Circular Progress Rings)
+(defwidget stats_card []
+  (box :class "stats-card-container" :orientation "horizontal" :space-evenly true :spacing 10
+    ;; RAM Tile
+    (box :class "stat-tile" :orientation "vertical" :space-evenly false :spacing 8 :halign "center"
+      (circular-progress :class "stat-circle ram-circle"
+                         :value ram_val
+                         :thickness 7
+                         :start-at 75
+        (label :class "stat-icon" :text "󰘚"))
+      (label :class "stat-name" :text "RAM")
+      (label :class "stat-val" :text "${ram_val}%")
+    )
+    ;; CPU Tile
+    (box :class "stat-tile" :orientation "vertical" :space-evenly false :spacing 8 :halign "center"
+      (circular-progress :class "stat-circle cpu-circle"
+                         :value cpu_val
+                         :thickness 7
+                         :start-at 75
+        (label :class "stat-icon" :text ""))
+      (label :class "stat-name" :text "CPU")
+      (label :class "stat-val" :text "${cpu_val}%")
+    )
+    ;; Storage Tile
+    (box :class "stat-tile" :orientation "vertical" :space-evenly false :spacing 8 :halign "center"
+      (circular-progress :class "stat-circle disk-circle"
+                         :value disk_val
+                         :thickness 7
+                         :start-at 75
+        (label :class "stat-icon" :text "󰋊"))
+      (label :class "stat-name" :text "SSD")
+      (label :class "stat-val" :text "${disk_val}%")
+    )
+  )
+)
+
+;; Music Player Card (Exact Reference Image Layout)
+(defwidget music_card []
+  (box :class "card music-card"
+       :style "${music_cover != '' ? 'background-image: linear-gradient(rgba(18, 20, 13, 0.72), rgba(18, 20, 13, 0.90)), url(\'' + music_cover + '\'); background-size: cover; background-position: center;' : ''}"
+       :orientation "vertical" :space-evenly false :spacing 10
+    ;; Track Title & Artist
+    (box :class "music-meta" :orientation "vertical" :space-evenly false :spacing 2 :halign "start"
+      (label :class "music-title" :halign "start" :text "${music_title}")
+      (label :class "music-artist" :halign "start" :text "${music_artist}")
+    )
+    
+    ;; Progress Bar Slider
+    (box :class "music-progress-box" :orientation "horizontal"
+      (scale :class "music-progress-scale" :min 0 :max 101 :active false :value music_progress)
+    )
+    
+    ;; Bottom Row: Spotify icon + Time on left, Controls on right
+    (box :class "music-bottom-row" :orientation "horizontal" :space-evenly false
+      ;; Left: Spotify Logo + Time
+      (box :class "music-time-group" :orientation "horizontal" :space-evenly false :spacing 6 :halign "start"
+        (label :class "spotify-icon" :text "󰓇")
+        (label :class "music-time-text" :text "${music_time}")
+      )
+      
+      ;; Right: Controls (Shuffle, Prev, Play/Pause, Next, Loop)
+      (box :class "music-controls-group" :orientation "horizontal" :space-evenly false :spacing 6 :hexpand true :halign "end"
+        (button :class "music-ctrl-btn" :tooltip "Shuffle" :onclick "scripts/music.sh shuffle-toggle" "󰒝")
+        (button :class "music-ctrl-btn" :tooltip "Previous" :onclick "scripts/music.sh prev" "󰒮")
+        (button :class "music-ctrl-btn play-circle-btn" :tooltip "Play / Pause" :onclick "scripts/music.sh toggle" "${music_icon}")
+        (button :class "music-ctrl-btn" :tooltip "Next" :onclick "scripts/music.sh next" "󰒭")
+        (button :class "music-ctrl-btn" :tooltip "Loop" :onclick "scripts/music.sh loop-toggle" "󰑖")
+      )
+    )
+  )
+)
+
+;; Calendar Widget
+(defwidget cal_card []
+  (box :class "card cal-card" :orientation "vertical" :space-evenly false :spacing 4
+    (box :class "cal-header" :orientation "horizontal" :space-evenly true
+      (label :class "section-title" :text "  Calendar")
+    )
+    (calendar :class "calendar-widget"
+              :day cal_day
+              :year cal_year)
+  )
+)
+
+;; Main Dashboard Container
+(defwidget dashboard_layout []
+  (box :class "dashboard-container" :orientation "vertical" :space-evenly false :spacing 12
+    (clock_weather_card)
+    (stats_card)
+    (music_card)
+    (cal_card)
+  )
+)
+
+;; -----------------------------------------------------------------------------
+;; 3. WINDOW DEFINITIONS (FLOATING DETACHED DASHBOARD & CLICK-AWAY CLOSER)
+;; -----------------------------------------------------------------------------
+
+;; Background closer window to dismiss on click outside
+(defwindow left_dashboard_closer
+  :namespace "eww-closer"
+  :monitor 0
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "100%"
+                      :height "100%")
+  :stacking "overlay"
+  :focusable false
+  (eventbox :class "closer-eventbox" :onclick "scripts/toggle.sh close")
+)
+
+;; Main floating dashboard window
+(defwindow left_dashboard
+  :namespace "eww-dashboard"
+  :monitor 0
+  :geometry (geometry :x "20px"
+                      :y "0px"
+                      :width "360px"
+                      :anchor "left center")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  (dashboard_layout)
+)

@@ -6,6 +6,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("sleep 1 && waybar")
     hl.exec_cmd("hyprsunset -t 5000")
     hl.exec_cmd("swaync")
+    hl.exec_cmd("eww daemon")
     hl.exec_cmd("awww-daemon & sleep 0.5 & awww init")
     hl.exec_cmd("nm-applet --indicator")
 
