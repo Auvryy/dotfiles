@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Eww Left Floating Dashboard Stylesheet
+   Synced with Matugen Dynamic Wallpaper Colors
+   ========================================================================== */
+
+@import "_colors.scss";
+
+* {
+    all: unset;
+    font-family: "JetBrainsMono Nerd Font", "Plus Jakarta Sans", -apple-system, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* 0. Transparent Click-Away Closer Window */
+.closer-eventbox {
+    background-color: transparent;
+}
+
+/* 1. Main Floating Dashboard Container */
+.dashboard-container {
+    background-color: rgba($background, 0.85);
+    border: 1px solid rgba($foreground, 0.14);
+    border-radius: 20px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65);
+    padding: 16px;
+}
+
+/* Universal Card Base */
+.card {
+    background-color: rgba($select, 0.65);
+    border: 1px solid rgba($foreground, 0.08);
+    border-radius: 16px;
+    padding: 14px 16px;
+}
+
+.section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: $main-blue;
+    letter-spacing: -0.01em;
+}
+
+/* 2. Clock & Santa Cruz Weather (Unified Header) */
+.header-card {
+    background: linear-gradient(135deg, rgba($select, 0.85) 0%, rgba($background, 0.92) 100%);
+    border-color: rgba($main-blue, 0.25);
+    padding: 14px 16px;
+}
+
+.time-digits {
+    font-size: 30px;
+    font-weight: 800;
+    color: $foreground;
+    letter-spacing: -0.03em;
+}
+
+.time-period {
+    font-size: 11px;
+    font-weight: 700;
+    color: $main-blue;
+    background-color: rgba($main-blue, 0.15);
+    border-radius: 6px;
+    padding: 2px 6px;
+    margin-top: 8px;
+}
+
+.date-day {
+    font-size: 13px;
+    font-weight: 700;
+    color: $main-blue;
+}
+
+.date-full {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba($foreground, 0.65);
+}
+
+.weather-icon {
+    font-size: 20px;
+}
+
+.weather-temp {
+    font-size: 18px;
+    font-weight: 800;
+    color: $foreground;
+}
+
+.weather-desc {
+    font-size: 11px;
+    font-weight: 600;
+    color: $cyan;
+}
+
+.weather-loc {
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba($foreground, 0.6);
+}
+
+/* 3. Hardware Resources (3 Squircle Tiles - Image 2 Style) */
+.stats-card-container {
+    margin: 0;
+}
+
+.stat-tile {
+    background-color: rgba($select, 0.65);
+    border: 1px solid rgba($foreground, 0.08);
+    border-radius: 16px;
+    padding: 12px 8px;
+    min-width: 98px;
+}
+
+.stat-circle {
+    background-color: rgba($foreground, 0.12); /* Unfilled dark track */
+    color: $main-blue;                          /* Filled progress arc */
+    border-radius: 999px;
+    min-width: 62px;
+    min-height: 62px;
+}
+
+.ram-circle {
+    color: $cyan;
+}
+
+.cpu-circle {
+    color: $main-blue;
+}
+
+.disk-circle {
+    color: $orange;
+}
+
+.stat-icon {
+    font-size: 18px;
+    color: $foreground;
+}
+
+.stat-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba($foreground, 0.65);
+}
+
+.stat-val {
+    font-size: 12px;
+    font-weight: 700;
+    color: $foreground;
+}
+
+/* 4. Music Player Card (Exact Reference Image Style) */
+.music-card {
+    border-radius: 16px;
+    background-color: rgba($select, 0.75);
+    border: 1px solid rgba($foreground, 0.12);
+    padding: 16px 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.music-meta {
+    margin-bottom: 2px;
+}
+
+.music-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.music-artist {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Sleek Horizontal Timeline Progress Bar */
+.music-progress-box {
+    margin: 4px 0;
+}
+
+.music-progress-scale trough {
+    background-color: rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    min-height: 4px;
+}
+
+.music-progress-scale highlight {
+    background: #ffffff;
+    border-radius: 999px;
+}
+
+/* Bottom Controls Row */
+.music-bottom-row {
+    margin-top: 2px;
+}
+
+.spotify-icon {
+    font-size: 18px;
+    color: #1ed760;
+}
+
+.music-time-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: "JetBrainsMono Nerd Font", monospace;
+}
+
+.music-ctrl-btn {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.75);
+    padding: 4px 6px;
+    transition: all 0.2s ease;
+}
+
+.music-ctrl-btn:hover {
+    color: #ffffff;
+}
+
+.play-circle-btn {
+    font-size: 17px;
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    border-radius: 999px;
+    padding: 2px 7px;
+    margin: 0 2px;
+}
+
+.play-circle-btn:hover {
+    background-color: #ffffff;
+    color: #12140d;
+    border-color: #ffffff;
+}
+
+/* 5. Calendar Widget */
+.cal-card {
+    padding: 10px 12px;
+}
+
+.calendar-widget {
+    color: $foreground;
+    margin-top: 2px;
+}
+
+.calendar-widget:selected {
+    background-color: $main-blue;
+    color: $background;
+    border-radius: 6px;
+}
+
+.calendar-widget:hover {
+    background-color: rgba($foreground, 0.1);
+    border-radius: 6px;
+}

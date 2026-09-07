@@ -16,6 +16,7 @@ sleep 0.5
 waybar &
 swaync-client --reload-css 2>/dev/null
 swaync-client --reload-config 2>/dev/null
+eww reload 2>/dev/null
 kill -SIGUSR1 $(pgrep -a kitty | awk '{print $1}') 2>/dev/null
 
 # Patch oh-my-posh palette from generated colors.css
