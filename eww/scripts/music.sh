@@ -99,20 +99,57 @@ case "$1" in
     shuffle)
         shuf=$(playerctl --player="$PLAYER" shuffle 2>/dev/null)
         if [ "$shuf" = "On" ]; then
-            echo "active"
+            echo "On"
         else
-            echo "inactive"
+            echo "Off"
         fi
         ;;
     shuffle-toggle)
-        shuf=$(playerctl --player="$PLAYER" shuffle 2>/dev/null)
-        if [ "$shuf" = "On" ]; then
-            playerctl --player="$PLAYER" shuffle Off 2>/dev/null
+        playerctl --player="$PLAYER" shuffle Toggle 2>/dev/null
+        sleep 0.05
+        shuf=$(playerctl --player="$PLAYER" shuffle 2>/dev/null || echo "Off")
+        eww update music_shuffle="$shuf" 2>/dev/null
+        ;;
+    loop)
+        loop=$(playerctl --player="$PLAYER" loop 2>/dev/null)
+        if [ -z "$loop" ]; then
+            echo "None"
         else
-            playerctl --player="$PLAYER" shuffle On 2>/dev/null
+            echo "$loop"
+        fi
+        ;;
+    loop-icon)
+        loop=$(playerctl --player="$PLAYER" loop 2>/dev/null)
+        if [ "$loop" = "Track" ]; then
+            echo "󰑘"
+        else
+            echo "󰑖"
         fi
         ;;
     loop-toggle)
-        playerctl --player="$PLAYER" loop playlist 2>/dev/null || playerctl --player="$PLAYER" loop Track 2>/dev/null
+        current=$(playerctl --player="$PLAYER" loop 2>/dev/null)
+        case "$current" in
+            None|"")
+                target="Playlist"
+                ;;
+            Playlist)
+                target="Track"
+                ;;
+            Track)
+                target="None"
+                ;;
+            *)
+                target="Playlist"
+                ;;
+        esac
+        playerctl --player="$PLAYER" loop "$target" 2>/dev/null
+        sleep 0.05
+        real_loop=$(playerctl --player="$PLAYER" loop 2>/dev/null || echo "$target")
+        if [ "$real_loop" = "Track" ]; then
+            real_icon="󰑘"
+        else
+            real_icon="󰑖"
+        fi
+        eww update music_loop="$real_loop" music_loop_icon="$real_icon" 2>/dev/null
         ;;
 esac

@@ -12,17 +12,16 @@
     font-weight: 500;
 }
 
-/* 0. Transparent Click-Away Closer Window */
+/* 0. Transparent Click-Away Closer Window with Smooth Backdrop Shadowing */
 .closer-eventbox {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.38);
 }
 
 /* 1. Main Floating Dashboard Container */
 .dashboard-container {
-    background-color: rgba($background, 0.85);
+    background-color: rgba($background, 0.88);
     border: 1px solid rgba($foreground, 0.14);
     border-radius: 20px;
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65);
     padding: 16px;
 }
 
@@ -32,6 +31,7 @@
     border: 1px solid rgba($foreground, 0.08);
     border-radius: 16px;
     padding: 14px 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 .section-title {
@@ -155,7 +155,7 @@
     background-color: rgba($select, 0.75);
     border: 1px solid rgba($foreground, 0.12);
     padding: 16px 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 0 35px rgba(0, 0, 0, 0.55);
 }
 
 .music-meta {
@@ -167,12 +167,14 @@
     font-weight: 800;
     color: #ffffff;
     letter-spacing: -0.01em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
 }
 
 .music-artist {
     font-size: 12px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 /* Sleek Horizontal Timeline Progress Bar */
@@ -199,6 +201,7 @@
 .spotify-icon {
     font-size: 18px;
     color: #1ed760;
+    text-shadow: 0 0 8px rgba(30, 215, 96, 0.4);
 }
 
 .music-time-text {
@@ -206,17 +209,40 @@
     font-weight: 600;
     color: rgba(255, 255, 255, 0.85);
     font-family: "JetBrainsMono Nerd Font", monospace;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .music-ctrl-btn {
     font-size: 15px;
-    color: rgba(255, 255, 255, 0.75);
     padding: 4px 6px;
     transition: all 0.2s ease;
 }
 
-.music-ctrl-btn:hover {
-    color: #ffffff;
+.ctrl-inactive {
+    color: rgba(255, 255, 255, 0.42);
+}
+
+.ctrl-inactive:hover {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.ctrl-active {
+    color: #1ed760;
+    text-shadow: 0 0 10px rgba(30, 215, 96, 0.7);
+}
+
+.ctrl-active:hover {
+    color: #2bf774;
+}
+
+.ctrl-active-once {
+    color: #1ed760;
+    font-size: 16px;
+    text-shadow: 0 0 10px rgba(30, 215, 96, 0.7);
+}
+
+.ctrl-active-once:hover {
+    color: #2bf774;
 }
 
 .play-circle-btn {
@@ -226,6 +252,7 @@
     border-radius: 999px;
     padding: 2px 7px;
     margin: 0 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .play-circle-btn:hover {
