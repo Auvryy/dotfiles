@@ -15,23 +15,23 @@
 (defpoll cal_day :interval "1h" "date '+%d'")
 (defpoll cal_year :interval "1h" "date '+%Y'")
 
-(defpoll cpu_val :interval "2s" "scripts/cpu.sh")
+(defpoll cpu_val :interval "2s" "~/.config/eww/scripts/cpu.sh")
 (defpoll ram_val :interval "2s" "free | awk '/^Mem:/ {printf(\"%.0f\", $3/$2 * 100)}'")
 (defpoll disk_val :interval "10s" "df -h / | awk 'NR==2 {print $5}' | tr -d '%'")
 
-(defpoll weather_temp :interval "5m" "scripts/weather.sh temp")
-(defpoll weather_desc :interval "5m" "scripts/weather.sh desc")
-(defpoll weather_icon :interval "5m" "scripts/weather.sh icon")
+(defpoll weather_temp :interval "5m" "~/.config/eww/scripts/weather.sh temp")
+(defpoll weather_desc :interval "5m" "~/.config/eww/scripts/weather.sh desc")
+(defpoll weather_icon :interval "5m" "~/.config/eww/scripts/weather.sh icon")
 
-(defpoll music_title :interval "1s" "scripts/music.sh title")
-(defpoll music_artist :interval "1s" "scripts/music.sh artist")
-(defpoll music_icon :interval "1s" "scripts/music.sh icon")
-(defpoll music_cover :interval "2s" "scripts/music.sh cover")
-(defpoll music_time :interval "1s" "scripts/music.sh time")
-(defpoll music_progress :interval "1s" "scripts/music.sh progress")
-(defpoll music_shuffle :interval "1s" "scripts/music.sh shuffle")
-(defpoll music_loop :interval "1s" "scripts/music.sh loop")
-(defpoll music_loop_icon :interval "1s" "scripts/music.sh loop-icon")
+(defpoll music_title :interval "1s" "~/.config/eww/scripts/music.sh title")
+(defpoll music_artist :interval "1s" "~/.config/eww/scripts/music.sh artist")
+(defpoll music_icon :interval "1s" "~/.config/eww/scripts/music.sh icon")
+(defpoll music_cover :interval "2s" "~/.config/eww/scripts/music.sh cover")
+(defpoll music_time :interval "1s" "~/.config/eww/scripts/music.sh time")
+(defpoll music_progress :interval "1s" "~/.config/eww/scripts/music.sh progress")
+(defpoll music_shuffle :interval "1s" "~/.config/eww/scripts/music.sh shuffle")
+(defpoll music_loop :interval "1s" "~/.config/eww/scripts/music.sh loop")
+(defpoll music_loop_icon :interval "1s" "~/.config/eww/scripts/music.sh loop-icon")
 
 ;; -----------------------------------------------------------------------------
 ;; 2. WIDGET COMPONENTS
@@ -65,34 +65,34 @@
 (defwidget stats_card []
   (box :class "stats-card-container" :orientation "horizontal" :space-evenly true :spacing 10
     ;; RAM Tile
-    (box :class "stat-tile" :orientation "vertical" :space-evenly false :spacing 8 :halign "center"
+    (box :class "stat-tile" :orientation "vertical" :space-evenly false :spacing 6 :halign "center"
       (circular-progress :class "stat-circle ram-circle"
-                         :value ram_val
-                         :thickness 7
+                         :value "${ram_val != '' ? ram_val : 0}"
+                         :thickness 6
                          :start-at 75
         (label :class "stat-icon" :text "󰘚"))
       (label :class "stat-name" :text "RAM")
-      (label :class "stat-val" :text "${ram_val}%")
+      (label :class "stat-val" :text "${ram_val != '' ? ram_val : 0}%")
     )
     ;; CPU Tile
-    (box :class "stat-tile" :orientation "vertical" :space-evenly false :spacing 8 :halign "center"
+    (box :class "stat-tile" :orientation "vertical" :space-evenly false :spacing 6 :halign "center"
       (circular-progress :class "stat-circle cpu-circle"
-                         :value cpu_val
-                         :thickness 7
+                         :value "${cpu_val != '' ? cpu_val : 0}"
+                         :thickness 6
                          :start-at 75
         (label :class "stat-icon" :text ""))
       (label :class "stat-name" :text "CPU")
-      (label :class "stat-val" :text "${cpu_val}%")
+      (label :class "stat-val" :text "${cpu_val != '' ? cpu_val : 0}%")
     )
     ;; Storage Tile
-    (box :class "stat-tile" :orientation "vertical" :space-evenly false :spacing 8 :halign "center"
+    (box :class "stat-tile" :orientation "vertical" :space-evenly false :spacing 6 :halign "center"
       (circular-progress :class "stat-circle disk-circle"
-                         :value disk_val
-                         :thickness 7
+                         :value "${disk_val != '' ? disk_val : 0}"
+                         :thickness 6
                          :start-at 75
         (label :class "stat-icon" :text "󰋊"))
       (label :class "stat-name" :text "SSD")
-      (label :class "stat-val" :text "${disk_val}%")
+      (label :class "stat-val" :text "${disk_val != '' ? disk_val : 0}%")
     )
   )
 )
@@ -125,13 +125,13 @@
       (box :class "music-controls-group" :orientation "horizontal" :space-evenly false :spacing 6 :hexpand true :halign "end"
         (button :class "music-ctrl-btn ${music_shuffle == 'On' ? 'ctrl-active' : 'ctrl-inactive'}"
                 :tooltip "${music_shuffle == 'On' ? 'Shuffle: On' : 'Shuffle: Off'}"
-                :onclick "scripts/music.sh shuffle-toggle" "󰒝")
-        (button :class "music-ctrl-btn" :tooltip "Previous" :onclick "scripts/music.sh prev" "󰒮")
-        (button :class "music-ctrl-btn play-circle-btn" :tooltip "Play / Pause" :onclick "scripts/music.sh toggle" "${music_icon}")
-        (button :class "music-ctrl-btn" :tooltip "Next" :onclick "scripts/music.sh next" "󰒭")
+                :onclick "~/.config/eww/scripts/music.sh shuffle-toggle" "󰒝")
+        (button :class "music-ctrl-btn" :tooltip "Previous" :onclick "~/.config/eww/scripts/music.sh prev" "󰒮")
+        (button :class "music-ctrl-btn play-circle-btn" :tooltip "Play / Pause" :onclick "~/.config/eww/scripts/music.sh toggle" "${music_icon}")
+        (button :class "music-ctrl-btn" :tooltip "Next" :onclick "~/.config/eww/scripts/music.sh next" "󰒭")
         (button :class "music-ctrl-btn ${music_loop != 'None' ? (music_loop == 'Track' ? 'ctrl-active-once' : 'ctrl-active') : 'ctrl-inactive'}"
                 :tooltip "${music_loop == 'Track' ? 'Loop: Current Track (1)' : (music_loop == 'Playlist' ? 'Loop: All Playlist' : 'Loop: Off')}"
-                :onclick "scripts/music.sh loop-toggle" "${music_loop_icon}")
+                :onclick "~/.config/eww/scripts/music.sh loop-toggle" "${music_loop_icon}")
       )
     )
   )
@@ -173,7 +173,7 @@
                       :height "100%")
   :stacking "overlay"
   :focusable false
-  (eventbox :class "closer-eventbox" :onclick "scripts/toggle.sh close")
+  (eventbox :class "closer-eventbox" :onclick "~/.config/eww/scripts/toggle.sh close")
 )
 
 ;; Main floating dashboard window
