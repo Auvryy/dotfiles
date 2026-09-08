@@ -113,11 +113,9 @@
 }
 
 .stat-circle {
-    background-color: rgba($foreground, 0.12); /* Unfilled dark track */
+    background-color: rgba($foreground, 0.14); /* Unfilled dark track */
     color: $main-blue;                          /* Filled progress arc */
     border-radius: 999px;
-    min-width: 62px;
-    min-height: 62px;
 }
 
 .ram-circle {
@@ -133,8 +131,17 @@
 }
 
 .stat-icon {
-    font-size: 18px;
+    font-size: 20px;
     color: $foreground;
+    padding: 14px;
+}
+
+.cpu-stat-icon {
+    margin-right: 6px;
+}
+
+.ram-stat-icon {
+    margin-right: 2px;
 }
 
 .stat-name {
