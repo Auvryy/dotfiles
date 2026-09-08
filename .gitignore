@@ -63,6 +63,9 @@ input-remapper-2/
 zen/
 wallpapers/
 stripe/
+*centora*
+*paios*
+swaync/test_alert.sh
 
 # Logs and cache
 *.log
