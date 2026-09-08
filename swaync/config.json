@@ -53,6 +53,14 @@
             "summary": ".*(?i)antigravity.*",
             "exec": "true"
         },
+        "screen-recorder-app-silent": {
+            "app-name": "(?i)(gpu-screen-recorder|screen-recorder)",
+            "exec": "true"
+        },
+        "screen-recorder-summary-silent": {
+            "summary": ".*(?i)(recording saved|screen recorder|screen recording|replay clip).*",
+            "exec": "true"
+        },
         "play-tuturu-sound": {
             "exec": "/home/andy/.config/swaync/play_sound.sh"
         }

@@ -7,14 +7,15 @@
 ACTION="$1"
 RECORD_DIR="$HOME/Videos"
 TIME_FILE="/tmp/eww_gsr_start_time"
+CURRENT_FILE="/tmp/eww_gsr_current_file"
 MIC_FILE="/tmp/eww_gsr_mic"
 
 mkdir -p "$RECORD_DIR"
 
-# Detect current status
+# Detect current status reliably using pidof (matches only actual binary)
 get_status() {
     local pid
-    pid=$(pgrep -f "gpu-screen-recorder -w" 2>/dev/null | head -n 1)
+    pid=$(pidof gpu-screen-recorder 2>/dev/null | awk '{print $1}')
     if [ -z "$pid" ]; then
         echo "idle"
         return
@@ -65,14 +66,31 @@ start_recording() {
         audio="default_output|default_input"
     fi
     local outfile="$RECORD_DIR/Recording_$(date +%Y-%m-%d_%H-%M-%S).mp4"
+    echo "$outfile" > "$CURRENT_FILE"
     nohup gpu-screen-recorder -w HDMI-A-1 -f 60 -a "$audio" -q very_high -o "$outfile" >/dev/null 2>&1 &
-    notify-send -i media-record -t 2500 "Screen Recorder" "Started recording screen (60 FPS)..."
+    # No notification when starting recording per user request
 }
 
 stop_recording() {
-    pkill -SIGINT -f "gpu-screen-recorder -w" 2>/dev/null
-    rm -f "$TIME_FILE"
-    notify-send -i video-x-generic -t 3500 "Screen Recorder" "Recording saved to ~/Videos"
+    local outfile
+    outfile=$(cat "$CURRENT_FILE" 2>/dev/null)
+    killall -SIGINT gpu-screen-recorder 2>/dev/null
+    rm -f "$TIME_FILE" "$CURRENT_FILE"
+    
+    # Wait for process to cleanly write headers and finalize file
+    sleep 0.6
+    
+    # Fallback to newest mp4 if needed
+    if [ -z "$outfile" ] || [ ! -f "$outfile" ]; then
+        outfile=$(ls -t "$RECORD_DIR"/*.mp4 2>/dev/null | head -n 1)
+    fi
+    
+    # Pop up silent notification showing the file path, excluded from sound
+    if [ -n "$outfile" ]; then
+        notify-send -a "gpu-screen-recorder" -i video-x-generic -t 4500 \
+            -h string:sound-name:none -h boolean:suppress-sound:true \
+            "Recording Saved" "$outfile"
+    fi
 }
 
 start_replay() {
@@ -81,12 +99,10 @@ start_replay() {
         audio="default_output|default_input"
     fi
     nohup gpu-screen-recorder -w HDMI-A-1 -c mp4 -f 60 -a "$audio" -q very_high -r 60 -o "$RECORD_DIR" >/dev/null 2>&1 &
-    notify-send -i media-playback-start -t 2500 "Screen Recorder" "Replay buffer active (60s buffer)"
 }
 
 stop_replay() {
-    pkill -SIGINT -f "gpu-screen-recorder -w" 2>/dev/null
-    notify-send -i media-playback-stop -t 2000 "Screen Recorder" "Replay buffer stopped"
+    killall -SIGINT gpu-screen-recorder 2>/dev/null
 }
 
 case "$ACTION" in
@@ -123,10 +139,8 @@ case "$ACTION" in
     "mic-toggle")
         if [ "$(get_mic_state)" = "on" ]; then
             echo "off" > "$MIC_FILE"
-            notify-send -i audio-input-microphone -t 2000 "Screen Recorder" "Microphone capture: OFF"
         else
             echo "on" > "$MIC_FILE"
-            notify-send -i audio-input-microphone -t 2000 "Screen Recorder" "Microphone capture: ON"
         fi
         ;;
     "toggle-record")
@@ -146,7 +160,7 @@ case "$ACTION" in
         if [ "$status" = "replay" ]; then
             stop_replay
         elif [ "$status" = "recording" ]; then
-            notify-send -i dialog-warning -t 2500 "Screen Recorder" "Cannot start replay while recording"
+            :
         else
             start_replay
         fi
@@ -154,10 +168,14 @@ case "$ACTION" in
     "save-replay")
         status=$(get_status)
         if [ "$status" = "replay" ]; then
-            pkill -SIGUSR1 -f "gpu-screen-recorder -w" 2>/dev/null
-            notify-send -i document-save -t 3000 "Screen Recorder" "Replay clip saved to ~/Videos!"
-        else
-            notify-send -i dialog-warning -t 2500 "Screen Recorder" "Replay buffer is not currently running"
+            killall -SIGUSR1 gpu-screen-recorder 2>/dev/null
+            sleep 0.6
+            latest=$(ls -t "$RECORD_DIR"/*.mp4 2>/dev/null | head -n 1)
+            if [ -n "$latest" ]; then
+                notify-send -a "gpu-screen-recorder" -i video-x-generic -t 4500 \
+                    -h string:sound-name:none -h boolean:suppress-sound:true \
+                    "Replay Clip Saved" "$latest"
+            fi
         fi
         ;;
     "open-videos")

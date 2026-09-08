@@ -171,14 +171,9 @@
 (defwidget cava_card []
   (box :class "card cava-card" :orientation "vertical" :space-evenly false :spacing 12
     ;; Card Header
-    (box :class "cava-header" :orientation "horizontal" :space-evenly false
-      (box :orientation "horizontal" :space-evenly false :spacing 6 :halign "start"
-        (label :class "cava-title-icon" :text "󰎆")
-        (label :class "section-title" :text "Audio Spectrum")
-      )
-      (box :orientation "horizontal" :space-evenly false :spacing 6 :hexpand true :halign "end"
-        (label :class "cava-badge" :text "60 FPS • PipeWire")
-      )
+    (box :class "cava-header" :orientation "horizontal" :space-evenly false :spacing 6 :halign "start"
+      (label :class "cava-title-icon" :text "󰎆")
+      (label :class "section-title" :text "Audio Spectrum")
     )
     ;; Live Visualizer Spectrum Bars
     (box :class "cava-bars-container" :orientation "horizontal" :halign "center" :valign "center"
@@ -209,8 +204,7 @@
       )
       (box :class "recorder-status-chip ${rec_status}" :orientation "horizontal" :space-evenly false :spacing 5 :hexpand true :halign "end"
         (label :class "rec-pulse-dot" :text "${rec_status_icon}")
-        (label :class "rec-status-label" :text "${rec_status_text}")
-        (label :class "rec-timer-label" :text "${rec_status == 'recording' ? ' • ' + rec_timer : ''}")
+        (label :class "rec-status-label" :text "${rec_status == 'recording' ? 'RECORDING • ' + rec_timer : (rec_status == 'replay' ? 'REPLAY ACTIVE' : 'READY')}")
       )
     )
 
@@ -296,6 +290,77 @@
   )
 )
 
+;; Quick Launch Apps Card
+(defwidget quick_apps_card []
+  (box :class "card quick-apps-card" :orientation "vertical" :space-evenly false :spacing 10
+    ;; Card Header
+    (box :class "apps-header" :orientation "horizontal" :space-evenly false :spacing 6 :halign "start"
+      (label :class "apps-title-icon" :text "󰀻")
+      (label :class "section-title" :text "Quick Launch")
+    )
+
+    ;; Row 1: Discord & Honkai Star Rail Launcher
+    (box :class "apps-row" :orientation "horizontal" :space-evenly true :spacing 8
+      (button :class "app-pill-btn app-discord"
+              :tooltip "Launch Discord"
+              :onclick "discord &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon discord-icon" :text "󰙯")
+          (label :class "app-pill-name" :text "Discord")
+        )
+      )
+      (button :class "app-pill-btn app-hsr"
+              :tooltip "Launch The Honkers Railway Launcher"
+              :onclick "/usr/bin/the-honkers-railway-launcher &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon hsr-icon" :text "󰊴")
+          (label :class "app-pill-name" :text "Star Rail")
+        )
+      )
+    )
+
+    ;; Row 2: Zen Browser & Spotify
+    (box :class "apps-row" :orientation "horizontal" :space-evenly true :spacing 8
+      (button :class "app-pill-btn app-zen"
+              :tooltip "Launch Zen Browser"
+              :onclick "zen-browser &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon zen-icon" :text "󰖟")
+          (label :class "app-pill-name" :text "Zen Browser")
+        )
+      )
+      (button :class "app-pill-btn app-spotify"
+              :tooltip "Launch Spotify"
+              :onclick "spotify &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon spotify-icon" :text "")
+          (label :class "app-pill-name" :text "Spotify")
+        )
+      )
+    )
+
+    ;; Row 3: Kitty Terminal & Yazi File Manager
+    (box :class "apps-row" :orientation "horizontal" :space-evenly true :spacing 8
+      (button :class "app-pill-btn app-kitty"
+              :tooltip "Launch Kitty Terminal"
+              :onclick "kitty &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon kitty-icon" :text "󰄛")
+          (label :class "app-pill-name" :text "Kitty")
+        )
+      )
+      (button :class "app-pill-btn app-files"
+              :tooltip "Launch Yazi File Manager"
+              :onclick "kitty yazi &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon files-icon" :text "󰉋")
+          (label :class "app-pill-name" :text "Files")
+        )
+      )
+    )
+  )
+)
+
 ;; Left Column: Clock, Gauges, Music Player, Calendar
 (defwidget dashboard_col_left []
   (box :class "dashboard-col-left" :orientation "vertical" :space-evenly false :spacing 12
@@ -306,11 +371,12 @@
   )
 )
 
-;; Right Column: Live CAVA Visualizer & GPU Screen Recorder Studio
+;; Right Column: Live CAVA Visualizer, GPU Screen Studio, & Quick Apps Card
 (defwidget dashboard_col_right []
-  (box :class "dashboard-col-right" :orientation "vertical" :space-evenly false :spacing 12 :valign "center"
+  (box :class "dashboard-col-right" :orientation "vertical" :space-evenly false :spacing 12 :valign "start"
     (cava_card)
     (recorder_card)
+    (quick_apps_card)
   )
 )
 

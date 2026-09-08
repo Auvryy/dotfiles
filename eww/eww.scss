@@ -547,3 +547,47 @@
     color: rgba($foreground, 0.9);
     font-family: "JetBrainsMono Nerd Font", monospace;
 }
+
+/* 9. Quick Launch Apps Card */
+.quick-apps-card {
+    padding: 14px 16px;
+    background-color: rgba($select, 0.75);
+    border: 1px solid rgba($foreground, 0.12);
+}
+
+.apps-title-icon {
+    font-size: 16px;
+    color: $purple;
+}
+
+.app-pill-btn {
+    background-color: rgba($background, 0.55);
+    border: 1px solid rgba($foreground, 0.1);
+    border-radius: 12px;
+    padding: 8px 10px;
+    color: $foreground;
+    transition: all 0.2s ease;
+}
+
+.app-pill-btn:hover {
+    background-color: rgba($foreground, 0.12);
+    border-color: rgba($foreground, 0.25);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+.app-pill-icon {
+    font-size: 15px;
+}
+
+.discord-icon { color: #7289da; }
+.hsr-icon { color: #f39c12; }
+.zen-icon { color: $cyan; }
+.spotify-icon { color: #1db954; }
+.kitty-icon { color: #ff9f43; }
+.files-icon { color: $main-blue; }
+
+.app-pill-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba($foreground, 0.9);
+}
