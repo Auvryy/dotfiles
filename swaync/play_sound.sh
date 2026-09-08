@@ -3,9 +3,7 @@
 SOUND_FILE="$HOME/.config/swaync/sounds/tuturu.mp3"
 
 # Centora notification hook
-if [ -x "$HOME/.config/swaync/centora.sh" ]; then
-    "$HOME/.config/swaync/centora.sh" &
-elif [ -f "$HOME/.config/swaync/centora.sh" ]; then
+if [ -f "$HOME/.config/swaync/centora.sh" ]; then
     bash "$HOME/.config/swaync/centora.sh" &
 fi
 
