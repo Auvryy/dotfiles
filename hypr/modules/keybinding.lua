@@ -120,26 +120,26 @@ hl.bind(mainMod .. " + ALT + S", hl.dsp.exec_cmd("~/.local/bin/sort-downloads.sh
 })
 
 --------------------------------------------------------------------------------
--- 4. SCREENSHOTS (HYPRSHOT)
+-- 4. SCREENSHOTS (DYNAMIC FOLDERS & RENAME PROMPT)
 --------------------------------------------------------------------------------
 
 -- Fullscreen -> clipboard
-hl.bind(mainMod .. " + SHIFT + A", hl.dsp.exec_cmd("hyprshot -m output --clipboard-only"), {
+hl.bind(mainMod .. " + SHIFT + A", hl.dsp.exec_cmd("~/.config/auvry/screenshot.sh clipboard-output"), {
     description = "Screenshot Fullscreen to Clipboard",
 })
 
 -- Fullscreen -> save file
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("hyprshot -m output -o $HOME/Pictures/Screenshots"), {
-    description = "Screenshot Fullscreen to File",
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/.config/auvry/screenshot.sh output"), {
+    description = "Screenshot Fullscreen to File (with Prompt)",
 })
 
 -- Region -> save file
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("hyprshot -m region --freeze -o $HOME/Pictures/Screenshots"), {
-    description = "Screenshot Region to File",
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("~/.config/auvry/screenshot.sh region"), {
+    description = "Screenshot Region to File (with Prompt)",
 })
 
 -- Region -> clipboard
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region --freeze --clipboard-only"), {
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("~/.config/auvry/screenshot.sh clipboard-region"), {
     description = "Screenshot Region to Clipboard",
 })
 
