@@ -45,4 +45,5 @@ hl.layer_rule({ match = { namespace = "rofi" }, blur = true, ignore_alpha = 0.5 
 hl.layer_rule({ match = { namespace = "logout_dialog" }, blur = true })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, blur = true, ignore_alpha = 0.5 })
 hl.layer_rule({ match = { namespace = "swaync-notification-window" }, blur = true, ignore_alpha = 0.5 })
-hl.layer_rule({ match = { namespace = "eww-dashboard" }, blur = true, ignore_alpha = 0.5 })
+hl.layer_rule({ match = { namespace = "eww-dashboard" }, blur = true, ignore_alpha = 0.5, animation = "slide left" })
+hl.layer_rule({ match = { namespace = "eww-closer" }, animation = "fade" })
