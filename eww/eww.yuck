@@ -70,7 +70,9 @@
                          :value "${ram_val != '' ? ram_val : 0}"
                          :thickness 6
                          :start-at 75
-        (label :class "stat-icon" :text "󰘚"))
+                         :halign "center"
+                         :valign "center"
+        (label :class "stat-icon ram-stat-icon" :halign "center" :valign "center" :text "󰘚"))
       (label :class "stat-name" :text "RAM")
       (label :class "stat-val" :text "${ram_val != '' ? ram_val : 0}%")
     )
@@ -80,7 +82,9 @@
                          :value "${cpu_val != '' ? cpu_val : 0}"
                          :thickness 6
                          :start-at 75
-        (label :class "stat-icon" :text ""))
+                         :halign "center"
+                         :valign "center"
+        (label :class "stat-icon cpu-stat-icon" :halign "center" :valign "center" :text ""))
       (label :class "stat-name" :text "CPU")
       (label :class "stat-val" :text "${cpu_val != '' ? cpu_val : 0}%")
     )
@@ -90,7 +94,9 @@
                          :value "${disk_val != '' ? disk_val : 0}"
                          :thickness 6
                          :start-at 75
-        (label :class "stat-icon" :text "󰋊"))
+                         :halign "center"
+                         :valign "center"
+        (label :class "stat-icon disk-stat-icon" :halign "center" :valign "center" :text "󰋊"))
       (label :class "stat-name" :text "SSD")
       (label :class "stat-val" :text "${disk_val != '' ? disk_val : 0}%")
     )
