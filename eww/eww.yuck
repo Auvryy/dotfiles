@@ -34,7 +34,7 @@
 (defpoll music_loop_icon :interval "1s" "~/.config/eww/scripts/music.sh loop-icon")
 
 ;; CAVA Audio Visualizer Stream
-(deflisten cava_bars :initial "▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁" "/home/andy/.config/eww/scripts/cava.sh")
+(deflisten cava_bars :initial "▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁" "./scripts/cava.sh")
 
 ;; GPU Screen Recorder Controls & Status
 (defpoll rec_status :interval "1s" "~/.config/eww/scripts/recorder.sh status")

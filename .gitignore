@@ -79,6 +79,8 @@ stripe/
 # Secrets, Databases, History & Keys (Security Guardrails)
 *.sqlite*
 *.db
+*-journal
+*.journal
 *.token
 *_history
 *history
