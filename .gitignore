@@ -1,5 +1,6 @@
 # Browser data
 google-chrome/
+google-chrome-for-testing/
 mozilla/
 
 # Communication & proprietary apps
@@ -78,6 +79,8 @@ stripe/
 # Secrets, Databases, History & Keys (Security Guardrails)
 *.sqlite*
 *.db
+*-journal
+*.journal
 *.token
 *_history
 *history

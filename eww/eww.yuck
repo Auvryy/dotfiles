@@ -33,6 +33,18 @@
 (defpoll music_loop :interval "1s" "~/.config/eww/scripts/music.sh loop")
 (defpoll music_loop_icon :interval "1s" "~/.config/eww/scripts/music.sh loop-icon")
 
+;; CAVA Audio Visualizer Stream
+(deflisten cava_bars :initial "▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁" "./scripts/cava.sh")
+
+;; GPU Screen Recorder Controls & Status
+(defpoll rec_status :interval "1s" "~/.config/eww/scripts/recorder.sh status")
+(defpoll rec_status_text :interval "1s" "~/.config/eww/scripts/recorder.sh status-text")
+(defpoll rec_status_icon :interval "1s" "~/.config/eww/scripts/recorder.sh status-icon")
+(defpoll rec_timer :interval "1s" "~/.config/eww/scripts/recorder.sh timer")
+(defpoll rec_mic_icon :interval "1s" "~/.config/eww/scripts/recorder.sh mic-icon")
+(defpoll rec_mic_state :interval "1s" "~/.config/eww/scripts/recorder.sh mic")
+(defpoll rec_latest :interval "3s" "~/.config/eww/scripts/recorder.sh latest-clip")
+
 ;; -----------------------------------------------------------------------------
 ;; 2. WIDGET COMPONENTS
 ;; -----------------------------------------------------------------------------
@@ -155,13 +167,224 @@
   )
 )
 
-;; Main Dashboard Container
-(defwidget dashboard_layout []
-  (box :class "dashboard-container" :orientation "vertical" :space-evenly false :spacing 12
+;; CAVA Live Audio Spectrum Card
+(defwidget cava_card []
+  (box :class "card cava-card" :orientation "vertical" :space-evenly false :spacing 12
+    ;; Card Header
+    (box :class "cava-header" :orientation "horizontal" :space-evenly false :spacing 6 :halign "start"
+      (label :class "cava-title-icon" :text "󰎆")
+      (label :class "section-title" :text "Audio Spectrum")
+    )
+    ;; Live Visualizer Spectrum Bars
+    (box :class "cava-bars-container" :orientation "horizontal" :halign "center" :valign "center"
+      (label :class "cava-bars" :show-truncated false :text "${cava_bars}")
+    )
+    ;; Audio source details footer
+    (box :class "cava-footer" :orientation "horizontal" :space-evenly true
+      (box :orientation "horizontal" :space-evenly false :spacing 5 :halign "start"
+        (label :class "cava-sub-icon" :text "󰓃")
+        (label :class "cava-sub-text" :text "PipeWire Direct")
+      )
+      (box :orientation "horizontal" :space-evenly false :spacing 5 :halign "end"
+        (label :class "cava-sub-icon" :text "󰋋")
+        (label :class "cava-sub-text" :text "Analog Stereo")
+      )
+    )
+  )
+)
+
+;; GPU Screen Recorder Studio Card
+(defwidget recorder_card []
+  (box :class "card recorder-card" :orientation "vertical" :space-evenly false :spacing 12
+    ;; Header: Title + Status Indicator Badge
+    (box :class "recorder-header" :orientation "horizontal" :space-evenly false
+      (box :orientation "horizontal" :space-evenly false :spacing 6 :halign "start"
+        (label :class "recorder-title-icon" :text "󰕧")
+        (label :class "section-title" :text "Screen Studio")
+      )
+      (box :class "recorder-status-chip ${rec_status}" :orientation "horizontal" :space-evenly false :spacing 5 :hexpand true :halign "end"
+        (label :class "rec-pulse-dot" :text "${rec_status_icon}")
+        (label :class "rec-status-label" :text "${rec_status == 'recording' ? 'RECORDING • ' + rec_timer : (rec_status == 'replay' ? 'REPLAY ACTIVE' : 'READY')}")
+      )
+    )
+
+    ;; Primary Actions: Record Pill & Instant Replay Button
+    (box :class "recorder-primary-actions" :orientation "horizontal" :space-evenly true :spacing 8
+      ;; Main Record Button
+      (button :class "rec-btn-main ${rec_status == 'recording' ? 'rec-btn-active' : ''}"
+              :tooltip "${rec_status == 'recording' ? 'Stop and Save Recording' : 'Start Recording Screen (60 FPS)'}"
+              :onclick "~/.config/eww/scripts/recorder.sh toggle-record"
+        (box :orientation "horizontal" :space-evenly false :spacing 6 :halign "center"
+          (label :class "rec-btn-icon" :text "${rec_status == 'recording' ? '󰙦' : '󰑋'}")
+          (label :class "rec-btn-text" :text "${rec_status == 'recording' ? 'Stop & Save' : 'Record Screen'}")
+        )
+      )
+
+      ;; Instant Replay Toggle Button
+      (button :class "rec-btn-replay ${rec_status == 'replay' ? 'replay-active' : ''}"
+              :tooltip "${rec_status == 'replay' ? 'Stop 60s Replay Buffer' : 'Start 60s Replay Buffer (ShadowPlay)'}"
+              :onclick "~/.config/eww/scripts/recorder.sh toggle-replay"
+        (box :orientation "horizontal" :space-evenly false :spacing 6 :halign "center"
+          (label :class "rec-btn-icon" :text "󰓎")
+          (label :class "rec-btn-text" :text "${rec_status == 'replay' ? 'Replay Active' : 'Replay (60s)'}")
+        )
+      )
+    )
+
+    ;; Secondary Toolbar: Save Clip, Mic Toggle, Videos Folder, Open GUI
+    (box :class "recorder-toolbar" :orientation "horizontal" :space-evenly true :spacing 6
+      ;; Save Replay Clip
+      (button :class "rec-tool-btn ${rec_status == 'replay' ? 'tool-highlight' : 'tool-dim'}"
+              :tooltip "Save Last 60s Replay Clip"
+              :onclick "~/.config/eww/scripts/recorder.sh save-replay"
+        (box :orientation "horizontal" :space-evenly false :spacing 4 :halign "center"
+          (label :text "")
+          (label :class "tool-label" :text "Clip")
+        )
+      )
+
+      ;; Mic Toggle
+      (button :class "rec-tool-btn ${rec_mic_state == 'on' ? 'tool-active' : ''}"
+              :tooltip "Toggle Microphone Capture (Currently: ${rec_mic_state == 'on' ? 'ON' : 'OFF'})"
+              :onclick "~/.config/eww/scripts/recorder.sh mic-toggle"
+        (box :orientation "horizontal" :space-evenly false :spacing 4 :halign "center"
+          (label :text "${rec_mic_icon}")
+          (label :class "tool-label" :text "Mic")
+        )
+      )
+
+      ;; Open Videos Folder
+      (button :class "rec-tool-btn"
+              :tooltip "Open ~/Videos in File Manager"
+              :onclick "~/.config/eww/scripts/recorder.sh open-videos"
+        (box :orientation "horizontal" :space-evenly false :spacing 4 :halign "center"
+          (label :text "󰉋")
+          (label :class "tool-label" :text "Videos")
+        )
+      )
+
+      ;; Open Full GUI Settings
+      (button :class "rec-tool-btn"
+              :tooltip "Open GPU Screen Recorder GTK Settings"
+              :onclick "~/.config/eww/scripts/recorder.sh open-gui"
+        (box :orientation "horizontal" :space-evenly false :spacing 4 :halign "center"
+          (label :text "󰒓")
+          (label :class "tool-label" :text "GUI")
+        )
+      )
+    )
+
+    ;; Recent Recording Quick Item
+    (box :class "rec-clip-box" :orientation "horizontal" :space-evenly false :spacing 6 :halign "center"
+      (label :class "rec-clip-icon" :text "󰈫")
+      (label :class "rec-clip-label" :text "Recent:")
+      (button :class "rec-clip-btn" :tooltip "Open Recent Clip" :onclick "~/.config/eww/scripts/recorder.sh play-latest"
+        (label :class "rec-clip-title" :limit-width 24 :text "${rec_latest}")
+      )
+    )
+
+    ;; Specs Footer Chip
+    (box :class "recorder-footer" :orientation "horizontal" :space-evenly false :halign "center"
+      (label :class "rec-specs-chip" :text "󰢮 VAAPI H.264 • 1440x900 @ 60 FPS • Stereo")
+    )
+  )
+)
+
+;; Quick Launch Apps Card
+(defwidget quick_apps_card []
+  (box :class "card quick-apps-card" :orientation "vertical" :space-evenly false :spacing 10
+    ;; Card Header
+    (box :class "apps-header" :orientation "horizontal" :space-evenly false :spacing 6 :halign "start"
+      (label :class "apps-title-icon" :text "󰀻")
+      (label :class "section-title" :text "Quick Launch")
+    )
+
+    ;; Row 1: Discord & Honkai Star Rail Launcher
+    (box :class "apps-row" :orientation "horizontal" :space-evenly true :spacing 8
+      (button :class "app-pill-btn app-discord"
+              :tooltip "Launch Discord"
+              :onclick "discord &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon discord-icon" :text "󰙯")
+          (label :class "app-pill-name" :text "Discord")
+        )
+      )
+      (button :class "app-pill-btn app-hsr"
+              :tooltip "Launch The Honkers Railway Launcher"
+              :onclick "/usr/bin/the-honkers-railway-launcher &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon hsr-icon" :text "󰊴")
+          (label :class "app-pill-name" :text "Star Rail")
+        )
+      )
+    )
+
+    ;; Row 2: Zen Browser & Spotify
+    (box :class "apps-row" :orientation "horizontal" :space-evenly true :spacing 8
+      (button :class "app-pill-btn app-zen"
+              :tooltip "Launch Zen Browser"
+              :onclick "zen-browser &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon zen-icon" :text "󰖟")
+          (label :class "app-pill-name" :text "Zen Browser")
+        )
+      )
+      (button :class "app-pill-btn app-spotify"
+              :tooltip "Launch Spotify"
+              :onclick "spotify &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon spotify-icon" :text "")
+          (label :class "app-pill-name" :text "Spotify")
+        )
+      )
+    )
+
+    ;; Row 3: Kitty Terminal & Yazi File Manager
+    (box :class "apps-row" :orientation "horizontal" :space-evenly true :spacing 8
+      (button :class "app-pill-btn app-kitty"
+              :tooltip "Launch Kitty Terminal"
+              :onclick "kitty &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon kitty-icon" :text "󰄛")
+          (label :class "app-pill-name" :text "Kitty")
+        )
+      )
+      (button :class "app-pill-btn app-files"
+              :tooltip "Launch Yazi File Manager"
+              :onclick "kitty yazi &"
+        (box :orientation "horizontal" :space-evenly false :spacing 8 :halign "center"
+          (label :class "app-pill-icon files-icon" :text "󰉋")
+          (label :class "app-pill-name" :text "Files")
+        )
+      )
+    )
+  )
+)
+
+;; Left Column: Clock, Gauges, Music Player, Calendar
+(defwidget dashboard_col_left []
+  (box :class "dashboard-col-left" :orientation "vertical" :space-evenly false :spacing 12
     (clock_weather_card)
     (stats_card)
     (music_card)
     (cal_card)
+  )
+)
+
+;; Right Column: Live CAVA Visualizer, GPU Screen Studio, & Quick Apps Card
+(defwidget dashboard_col_right []
+  (box :class "dashboard-col-right" :orientation "vertical" :space-evenly false :spacing 12 :valign "start"
+    (cava_card)
+    (recorder_card)
+    (quick_apps_card)
+  )
+)
+
+;; Main Dashboard Container (Dual Column Side-by-Side)
+(defwidget dashboard_layout []
+  (box :class "dashboard-container" :orientation "horizontal" :space-evenly false :spacing 16
+    (dashboard_col_left)
+    (dashboard_col_right)
   )
 )
 
@@ -188,7 +411,7 @@
   :monitor 0
   :geometry (geometry :x "20px"
                       :y "0px"
-                      :width "360px"
+                      :width "720px"
                       :anchor "left center")
   :stacking "overlay"
   :exclusive false

@@ -17,12 +17,12 @@
     background-color: rgba(0, 0, 0, 0.38);
 }
 
-/* 1. Main Floating Dashboard Container */
+/* 1. Main Floating Dashboard Container (Transparent wrapper for split-column layout) */
 .dashboard-container {
-    background-color: rgba($background, 0.88);
-    border: 1px solid rgba($foreground, 0.14);
-    border-radius: 20px;
-    padding: 16px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
 }
 
 /* Universal Card Base */
@@ -287,4 +287,307 @@
 .calendar-widget:hover {
     background-color: rgba($foreground, 0.1);
     border-radius: 6px;
+}
+
+/* 6. Columns Layout (Independent Separated Floating Sections) */
+.dashboard-col-left,
+.dashboard-col-right {
+    background-color: rgba($background, 0.88);
+    border: 1px solid rgba($foreground, 0.14);
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.dashboard-col-left {
+    min-width: 350px;
+}
+
+.dashboard-col-right {
+    min-width: 320px;
+}
+
+/* 7. CAVA Live Audio Spectrum Card */
+.cava-card {
+    padding: 14px 16px;
+    background-color: rgba($select, 0.75);
+    border: 1px solid rgba($foreground, 0.12);
+}
+
+.cava-title-icon {
+    font-size: 16px;
+    color: $cyan;
+}
+
+.cava-badge {
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba($foreground, 0.65);
+    background-color: rgba($foreground, 0.08);
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba($foreground, 0.06);
+}
+
+.cava-bars-container {
+    padding: 10px 10px 8px 10px;
+    background-color: rgba($background, 0.45);
+    border-radius: 12px;
+    border: 1px solid rgba($foreground, 0.06);
+    min-width: 270px;
+}
+
+.cava-bars {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: $main-blue;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba($main-blue, 0.55);
+}
+
+/* 8. GPU Screen Recorder Studio Card */
+.recorder-card {
+    padding: 14px 16px;
+    background-color: rgba($select, 0.75);
+    border: 1px solid rgba($foreground, 0.12);
+}
+
+.recorder-title-icon {
+    font-size: 16px;
+    color: $red;
+}
+
+.recorder-status-chip {
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    background-color: rgba($foreground, 0.08);
+    color: rgba($foreground, 0.7);
+    border: 1px solid rgba($foreground, 0.08);
+}
+
+.recorder-status-chip.recording {
+    background-color: rgba(255, 75, 75, 0.22);
+    color: #ff5555;
+    border: 1px solid rgba(255, 75, 75, 0.5);
+    box-shadow: 0 0 10px rgba(255, 75, 75, 0.35);
+}
+
+.recorder-status-chip.replay {
+    background-color: rgba(255, 170, 0, 0.2);
+    color: #ffaa00;
+    border: 1px solid rgba(255, 170, 0, 0.45);
+    box-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
+}
+
+.rec-pulse-dot {
+    font-size: 11px;
+}
+
+.rec-timer-label {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-weight: 700;
+}
+
+/* Main Record Button */
+.rec-btn-main {
+    background-color: rgba(255, 75, 75, 0.18);
+    border: 1px solid rgba(255, 75, 75, 0.45);
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: #ffffff;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.rec-btn-main:hover {
+    background-color: rgba(255, 75, 75, 0.32);
+    border-color: rgba(255, 75, 75, 0.7);
+}
+
+.rec-btn-active {
+    background-color: #ff4757;
+    color: #12140d;
+    border-color: #ff6b81;
+    box-shadow: 0 0 14px rgba(255, 71, 87, 0.6);
+}
+
+.rec-btn-active:hover {
+    background-color: #ff6b81;
+}
+
+/* Replay Toggle Button */
+.rec-btn-replay {
+    background-color: rgba($select, 0.85);
+    border: 1px solid rgba($foreground, 0.14);
+    border-radius: 12px;
+    padding: 10px 12px;
+    color: $foreground;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.rec-btn-replay:hover {
+    background-color: rgba($foreground, 0.12);
+    border-color: rgba($foreground, 0.25);
+}
+
+.rec-btn-replay.replay-active {
+    background-color: rgba(255, 170, 0, 0.2);
+    border-color: rgba(255, 170, 0, 0.6);
+    color: #ffaa00;
+    box-shadow: 0 0 12px rgba(255, 170, 0, 0.35);
+}
+
+.rec-btn-icon {
+    font-size: 15px;
+}
+
+.rec-btn-text {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Toolbar Buttons */
+.rec-tool-btn {
+    background-color: rgba($background, 0.6);
+    border: 1px solid rgba($foreground, 0.1);
+    border-radius: 10px;
+    padding: 8px 6px;
+    color: rgba($foreground, 0.85);
+    font-size: 13px;
+    transition: all 0.18s ease;
+}
+
+.rec-tool-btn:hover {
+    background-color: rgba($foreground, 0.12);
+    color: #ffffff;
+    border-color: rgba($foreground, 0.25);
+}
+
+.rec-tool-btn.tool-active {
+    color: $main-blue;
+    border-color: rgba($main-blue, 0.5);
+    background-color: rgba($main-blue, 0.15);
+}
+
+.rec-tool-btn.tool-highlight {
+    color: #ffaa00;
+    border-color: rgba(255, 170, 0, 0.5);
+    background-color: rgba(255, 170, 0, 0.15);
+}
+
+.rec-tool-btn.tool-dim {
+    opacity: 0.5;
+}
+
+.tool-label {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.rec-specs-chip {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: rgba($foreground, 0.45);
+    letter-spacing: 0.02em;
+    margin-top: 2px;
+}
+
+.cava-footer {
+    padding-top: 4px;
+    border-top: 1px solid rgba($foreground, 0.05);
+}
+
+.cava-sub-icon {
+    font-size: 11px;
+    color: $cyan;
+}
+
+.cava-sub-text {
+    font-size: 10px;
+    color: rgba($foreground, 0.6);
+    font-weight: 500;
+}
+
+/* Recent Recording Chip */
+.rec-clip-box {
+    background-color: rgba($background, 0.5);
+    border: 1px solid rgba($foreground, 0.08);
+    border-radius: 10px;
+    padding: 6px 10px;
+    margin-top: 2px;
+}
+
+.rec-clip-icon {
+    font-size: 13px;
+    color: $orange;
+}
+
+.rec-clip-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: rgba($foreground, 0.55);
+}
+
+.rec-clip-btn {
+    transition: all 0.2s ease;
+}
+
+.rec-clip-btn:hover {
+    color: $cyan;
+}
+
+.rec-clip-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba($foreground, 0.9);
+    font-family: "JetBrainsMono Nerd Font", monospace;
+}
+
+/* 9. Quick Launch Apps Card */
+.quick-apps-card {
+    padding: 14px 16px;
+    background-color: rgba($select, 0.75);
+    border: 1px solid rgba($foreground, 0.12);
+}
+
+.apps-title-icon {
+    font-size: 16px;
+    color: $purple;
+}
+
+.app-pill-btn {
+    background-color: rgba($background, 0.55);
+    border: 1px solid rgba($foreground, 0.1);
+    border-radius: 12px;
+    padding: 8px 10px;
+    color: $foreground;
+    transition: all 0.2s ease;
+}
+
+.app-pill-btn:hover {
+    background-color: rgba($foreground, 0.12);
+    border-color: rgba($foreground, 0.25);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+.app-pill-icon {
+    font-size: 15px;
+}
+
+.discord-icon { color: #7289da; }
+.hsr-icon { color: #f39c12; }
+.zen-icon { color: $cyan; }
+.spotify-icon { color: #1db954; }
+.kitty-icon { color: #ff9f43; }
+.files-icon { color: $main-blue; }
+
+.app-pill-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba($foreground, 0.9);
 }
