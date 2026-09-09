@@ -73,6 +73,7 @@ case "$MODE" in
     clipboard-region)
         GEOM=$(slurp -d -b 00000044 -c c9beffff -w 2 2>/dev/null)
         [ -z "$GEOM" ] && exit 0
+        sleep 0.15
         grim -g "$GEOM" - | wl-copy --type image/png
         notify-send "Screenshot Copied" "Region copied to clipboard." -i camera-photo -a "Screenshot"
         exit 0
@@ -87,6 +88,7 @@ case "$MODE" in
     region)
         GEOM=$(slurp -d -b 00000044 -c c9beffff -w 2 2>/dev/null)
         [ -z "$GEOM" ] && exit 0
+        sleep 0.15
         grim -g "$GEOM" "$TEMP_FILE" || exit 1
         ;;
 
