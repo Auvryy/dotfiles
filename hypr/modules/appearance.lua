@@ -47,3 +47,4 @@ hl.layer_rule({ match = { namespace = "swaync-control-center" }, blur = true, ig
 hl.layer_rule({ match = { namespace = "swaync-notification-window" }, blur = true, ignore_alpha = 0.5, animation = "slide right" })
 hl.layer_rule({ match = { namespace = "eww-dashboard" }, blur = true, ignore_alpha = 0.5, animation = "slide left" })
 hl.layer_rule({ match = { namespace = "eww-closer" }, animation = "fade" })
+hl.layer_rule({ match = { namespace = "selection" }, no_anim = true })

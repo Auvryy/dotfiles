@@ -8,7 +8,7 @@ if [ -f "$HOME/.config/swaync/centora.sh" ]; then
 fi
 
 # Ignore silent apps
-if [[ "$SWAYNC_APP_NAME" =~ (?i)(gpu-screen-recorder|screen-recorder) ]] || [[ "$SWAYNC_SUMMARY" =~ (?i)(recording|screen recorder|replay) ]]; then
+if [[ "$SWAYNC_APP_NAME" =~ (?i)(gpu-screen-recorder|screen-recorder|night\ timer) ]] || [[ "$SWAYNC_SUMMARY" =~ (?i)(recording|screen recorder|replay|auto-shutdown) ]]; then
     exit 0
 fi
 

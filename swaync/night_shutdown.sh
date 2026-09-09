@@ -5,11 +5,16 @@
 TARGET_TIME="${1:-02:30}"
 
 # If triggered automatically by systemd timer at 02:30 AM
-if [ "$1" = "now" ] || [ "$1" = "auto" ]; then
-    export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-1}"
-    export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/$(id -u)/bus}"
-    notify-send -u critical -a "Night Timer" "🌙 Auto-Shutdown" "02:30 AM reached. Powering off in 30 seconds..." 2>/dev/null
-    sleep 30
+if [ "$1" = "auto" ]; then
+    # Completely silent shutdown while sleeping - no notifications, no sound
+    sleep 2
+    systemctl poweroff
+    exit 0
+fi
+
+if [ "$1" = "now" ]; then
+    notify-send -u normal -a "Night Timer" "🌙 Shutting Down" "Powering off now. Good night!" 2>/dev/null
+    sleep 2
     systemctl poweroff
     exit 0
 fi
