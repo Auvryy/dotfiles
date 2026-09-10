@@ -1,7 +1,7 @@
 {
-    "modules-left": ["custom/powermenu", "custom/terminal", "custom/pacman", "tray", "cava"],
+    "modules-left": ["custom/powermenu", "tray", "custom/cava"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": [ /*"bluetooth"*/ "custom/weather", "network", "cpu", "battery", "pulseaudio", "clock", "custom/notification"],
+    "modules-right": ["custom/pacman", "custom/weather", "pulseaudio", "clock", "custom/notification"],
 
     "custom/powermenu": {
         "format" : " ",
@@ -41,38 +41,11 @@
         "cursor": true,
     },
 
-    "cava": {
-    // "cava_config": "$XDG_CONFIG_HOME/cava/config",  // optional: point to your cava config
-    "framerate": 24,
-    "autosens": 0,
-    "sensitivity": 1,
-    "bars": 5,
-    "lower_cutoff_freq": 50,
-    "higher_cutoff_freq": 10000,
-    "method": "pipewire",          // use "pipewire" if you're on pipewire
-    "source": "auto",
-    "stereo": false,
-    "reverse": false,
-    "bar_delimiter": 0,
-    "monstercat": false,
-    "waves": false,
-    "noise_reduction": 0.77,
-    "input_delay": 2,
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    // "actions": {
-    //   "on-click-right": "mode"
-    // },
-    "tooltip": false,
-    "cursor": false,
-    
-  },
-
-
-    // "custom/cava": {
-    //     "exec": "~/.config/waybar/scripts/cava.sh",
-    //     "format": "{}",
-    //     "tooltip": false
-    // },
+    "custom/cava": {
+        "exec": "$HOME/.config/waybar/scripts/cava.sh",
+        "format": "{}",
+        "tooltip": false
+    },
 
 
 
@@ -91,9 +64,9 @@
     },
 
     "custom/weather": {
-        "exec": "wttrbar --location 'Taal, Batangas,Philippines' --main-indicator temp_C --date-format '%d %b' --hide-conditions", //change the location here
+        "exec": "wttrbar --location 'Sta Cruz, Laguna, Philippines' --custom-indicator '{ICON} {temp_C}°C' --date-format '%d %b' --hide-conditions",
         "return-type": "json",
-        "interval": 3400,
+        "interval": 1800,
         "tooltip": true,
         "format": "{}",
     },
